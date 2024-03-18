@@ -26,9 +26,5 @@ jobs:
             client-id: ${{ secrets.AZURE_CLIENT_ID }}
             tenant-id: ${{ secrets.AZURE_TENANT_ID }}
             subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-            resource-group-name: ${{secrets.AZURE_RG}}
-            admin-username: ${{secrets.ADMIN_USERNAME}}
-            admin-password: ${{secrets.ADMIN_PASSWORD}}
-            
-      
-        
+            resource-group-name: ${{secrets.AZURE_RG}} 
+            location: 'eastus'
