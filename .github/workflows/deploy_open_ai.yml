@@ -23,10 +23,14 @@ jobs:
           
         - name: Edit yaml file
           uses: fjogeleit/yaml-update-action@main
-          with: 
-            changes: |
-              {
-                "testing.yaml": {
-                  "approach_classifier.openai_settings.engine": "chat",
-                },
-              }
+          with:
+            valueFile: 'testing.yaml'
+            propertyPath: 'approach_classifier.openai_settings.engine'
+            value: chat
+            commitChange: true
+            # changes: |
+            #   {
+            #     "testing.yaml": {
+            #       "approach_classifier.openai_settings.engine": "chat",
+            #     },
+            #   }
