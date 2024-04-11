@@ -24,8 +24,9 @@ jobs:
         - name: Edit yaml file
           uses: fjogeleit/yaml-update-action@main
           with: 
-            valueFile: 'testing.yaml'
             changes: |
               {
-                "approach_classifier.openai_settings.engine": "chat",
+                "testing.yaml": {
+                  "approach_classifier.openai_settings.engine": "chat",
+                },
               }
