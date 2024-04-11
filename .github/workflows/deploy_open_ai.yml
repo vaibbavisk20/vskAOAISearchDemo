@@ -28,6 +28,7 @@ jobs:
             propertyPath: 'approach_classifier.openai_settings.engine'
             value: chat
             commitChange: true
+            createPR: true
             # changes: |
             #   {
             #     "testing.yaml": {
