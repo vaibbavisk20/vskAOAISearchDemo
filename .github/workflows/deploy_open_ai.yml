@@ -22,12 +22,17 @@ jobs:
           uses: actions/checkout@v3
           
         - name: Edit yaml file
-          uses: fjogeleit/yaml-update-action@main
+          uses: rmeneely/update-yaml@v1
           with:
-            valueFile: 'testing.yaml'
-            propertyPath: 'approach_classifier.openai_settings.engine'
-            value: chat
-            commitChange: true
+            infile: testing.yaml
+            varlist: 'approach_classifier.openai_settings.engine=chat'
+          # uses: fjogeleit/yaml-update-action@main
+          # with:
+          #   valueFile: 'testing.yaml'
+          #   propertyPath: 'approach_classifier.openai_settings.engine'
+          #   value: chat
+          #   commitChange: true
+          #   createPR: true
             # changes: |
             #   {
             #     "testing.yaml": {
