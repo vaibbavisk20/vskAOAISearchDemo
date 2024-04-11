@@ -25,7 +25,7 @@ jobs:
           uses: rmeneely/update-yaml@v1
           with:
             infile: testing.yaml
-            varlist: approach_classifier.openai_settings.engine=chat
+            varlist: 'approach_classifier.openai_settings.engine=chat'
           # uses: fjogeleit/yaml-update-action@main
           # with:
           #   valueFile: 'testing.yaml'
