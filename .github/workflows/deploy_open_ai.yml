@@ -27,7 +27,7 @@ jobs:
             valueFile: 'testing.yaml'
             propertyPath: 'approach_classifier.openai_settings.engine'
             value: chat
-            commitChange: true
+            commitChange: false
             # changes: |
             #   {
             #     "testing.yaml": {
