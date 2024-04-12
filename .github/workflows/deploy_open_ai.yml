@@ -1,31 +1,31 @@
 
-name: Workflow to deploy Open AI Search Model on azure
+# name: Workflow to deploy Open AI Search Model on azure
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-  workflow_dispatch:
+# on:
+#   push:
+#     branches:
+#       - main
+#   pull_request:
+#     branches:
+#       - main
+#   workflow_dispatch:
 
-permissions:
-  id-token: write
-  contents: read
+# permissions:
+#   id-token: write
+#   contents: read
 
-jobs:
-  deploy-resources-to-azure:
-    runs-on: ubuntu-latest
-    steps:
-        - name: Checkout master
-          uses: actions/checkout@v3
+# jobs:
+#   deploy-resources-to-azure:
+#     runs-on: ubuntu-latest
+#     steps:
+#         - name: Checkout master
+#           uses: actions/checkout@v3
           
-        - name: Edit yaml file
-          uses: rmeneely/update-yaml@v1
-          with:
-            infile: testing.yaml
-            varlist: 'approach_classifier.openai_settings.engine=chat'
+#         - name: Edit yaml file
+#           uses: rmeneely/update-yaml@v1
+#           with:
+#             infile: testing.yaml
+#             varlist: 'approach_classifier.openai_settings.engine=chat'
           # uses: fjogeleit/yaml-update-action@main
           # with:
           #   valueFile: 'testing.yaml'
@@ -39,3 +39,22 @@ jobs:
             #       "approach_classifier.openai_settings.engine": "chat",
             #     },
             #   }
+
+name: 'workflow'
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test-update-file:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Update values.yaml
+        uses: fjogeleit/yaml-update-action@main
+        with:
+          valueFile: 'testing.yaml'
+          propertyPath: 'approach_classifier.openai_settings.engine'
+          value: 'chat'
+          commitChange: true
