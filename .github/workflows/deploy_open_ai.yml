@@ -66,3 +66,4 @@ jobs:
           value: 'chat'
           commitChange: true
           masterBranchName: main
+          targetBranch: main
