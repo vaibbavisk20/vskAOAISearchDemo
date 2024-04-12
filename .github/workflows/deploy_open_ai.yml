@@ -67,3 +67,5 @@ jobs:
           commitChange: true
           masterBranchName: main
           targetBranch: main
+          createPR: true
+          updateFile: true
