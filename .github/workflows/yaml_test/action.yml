@@ -40,29 +40,29 @@
             #     },
             #   }
 
-name: 'workflow'
-on:
-  push:
-    branches:
-      - main
-
-permissions:
-  id-token: write
-  contents: read
-  checks: write
-  issues: write
-  packages: write
-
-jobs:
-  test-update-file:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Update values.yaml
-        uses: fjogeleit/yaml-update-action@main
-        with:
-          valueFile: 'testing.yaml'
-          propertyPath: 'approach_classifier.openai_settings.engine'
-          value: 'chat'
-          commitChange: true
-          masterBranchName: main
+            name: 'Workflow to edit Yaml file'
+            on:
+              push:
+                branches:
+                  - main
+            
+            permissions:
+              id-token: write
+              contents: read
+              checks: write
+              issues: write
+              packages: write
+            
+            jobs:
+              test-update-file:
+                runs-on: ubuntu-latest
+                steps:
+                  - uses: actions/checkout@v3
+                  - name: Update values.yaml
+                    uses: fjogeleit/yaml-update-action@main
+                    with:
+                      valueFile: 'testing.yaml'
+                      propertyPath: 'approach_classifier.openai_settings.engine'
+                      value: 'chat'
+                      commitChange: true
+                      masterBranchName: main

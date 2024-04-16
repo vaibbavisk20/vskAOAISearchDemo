@@ -1,0 +1,133 @@
+name: 'Deploy a Open AI Model to Azure action'
+description: 'This action helps create an OpenAI search model'
+branding:
+  icon: 'play-circle'
+  color: 'blue'
+inputs:
+  client-id:
+    description: 'Client id to log in to azure'
+    required: true
+  tenant-id:
+    description: 'Tenant id to log in to azure'
+    required: true
+  subscription-id:
+    description: 'Subscription id to be used with your az login'
+    required: true
+  resource-group-name:
+    description: 'Resource group to deploy your resources to'
+    required: true
+  location:
+    description: 'Location to deploy OpenAI resource to'
+    required: true
+    
+runs:
+  using: 'composite'
+  steps:
+    - name: 'Checkout master'
+      uses: actions/checkout@v3
+
+    - name: az cli login
+      uses: azure/login@v1
+      with:
+        client-id: ${{ inputs.client-id }}
+        tenant-id: ${{ inputs.tenant-id }}
+        subscription-id: ${{ inputs.subscription-id }}
+        enable-AzPSSession: false
+  
+    - name: Install azd
+      uses: Azure/setup-azd@v0.1.0
+
+    - name: Install Nodejs
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+
+    # - name: Create directory
+    #   run: |
+    #     mkdir azd-repo
+    #   shell: pwsh
+
+    - name: Change directory
+      run: |
+        cd AOAISearchDemo
+      shell: pwsh
+      
+    - name: List directories
+      run: |
+        dir
+      shell: pwsh
+
+    - name: Log in with Azure (Federated Credentials)
+      run: |
+        azd auth login `
+          --client-id ${{ inputs.client-id }} `
+          --federated-credential-provider "github" `
+          --tenant-id ${{ inputs.tenant-id }}
+      shell: pwsh
+
+      
+    # - name: Initialize Application
+    #   run: git clone https://github.com/Azure-Samples/openai.git
+    #   # run: azd init -t Azure-Samples/azure-search-openai-demo --no-prompt
+    #   working-directory: azd-repo
+    #   env:
+    #     AZURE_OPENAI_SERVICE: "cog-nfban4bv76jok"
+    #     AZURE_OPENAI_RESOURCE_GROUP: "rg-try2"
+    #     AZURE_OPENAI_LOCATION: "eastus"
+    #     AZURE_OPENAI_MODEL: "gpt-35-turbo"
+    #     AZURE_OPENAI_MODEL_VERSION: "0613"
+    #     AZURE_OPENAI_DEPLOYMENT: "chat" 
+    #     AZURE_OPENAI_CLASSIFIER_MODEL: "gpt-35-turbo"
+    #     AZURE_OPENAI_CLASSIFIER_MODEL_VERSION: "0613"
+    #     AZURE_OPENAI_CLASSIFIER_DEPLOYMENT: "chat"
+    #     AZURE_OPENAI_EMBEDDINGS_MODEL: "text-embedding-ada-002"
+    #     AZURE_OPENAI_EMBEDDINGS_MODEL_VERSION: "2"
+    #     AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT: "embedding"
+    #     AZURE_OPENAI_EMBEDDINGS_TOKEN_LIMIT: "8191"
+    #     AZURE_OPENAI_EMBEDDINGS_DIMENSIONS: "1536"
+    #     # AZURE_ENV_NAME: ${{ inputs.resource-group-name }}
+    #     # AZURE_LOCATION: ${{ inputs.location }}
+    #     # AZURE_SUBSCRIPTION_ID: ${{ inputs.subscription-id }}
+    #     # AZURE_RESOURCE_GROUP: ${{ inputs.resource-group-name }}
+    #   shell: pwsh
+
+    # - name: Change directory
+    #   run: |
+    #     cd openai/openai/End_to_end_Solutions/AOAISearchDemo
+    #   shell: pwsh
+
+    # - name: Edit yaml file
+    #   uses: fjogeleit/yaml-update-action@main
+    #   with:
+    #     valueFile: 'app/backend/bot_config.yaml'
+    #     commitChange: true
+    #     changes: |
+    #       {
+    #         "backend.version": "${{ steps.image.outputs.backend.version }}",
+    #         "frontend.version": "${{ steps.image.outputs.frontend.version }}"
+    #       }
+
+    - name: Deploy Application
+      run: azd up
+      working-directory: azd-repo
+      env:
+        AZURE_ENV_NAME: "new4"
+        AZURE_LOCATION: "eastus"
+        AZURE_OPENAI_CLASSIFIER_DEPLOYMENT: "completions"
+        AZURE_OPENAI_CLASSIFIER_MODEL: "gpt-35-turbo-instruct"
+        AZURE_OPENAI_CLASSIFIER_MODEL_VERSION: "0914"
+        AZURE_OPENAI_DEPLOYMENT: "chat"
+        AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT: "embedding"
+        AZURE_OPENAI_EMBEDDINGS_DIMENSIONS: 1536
+        AZURE_OPENAI_EMBEDDINGS_MODEL: "text-embedding-ada-002"
+        AZURE_OPENAI_EMBEDDINGS_MODEL_VERSION: 2
+        AZURE_OPENAI_EMBEDDINGS_TOKEN_LIMIT: 8191
+        AZURE_OPENAI_LOCATION: "eastus"
+        AZURE_OPENAI_MODEL: "gpt-35-turbo"
+        AZURE_OPENAI_MODEL_VERSION: "0613"
+        AZURE_OPENAI_RESOURCE_GROUP: "vsk-ai-rg"
+        AZURE_OPENAI_SERVICE: "vsk-openai"
+        AZURE_PRINCIPAL_ID: "556689e1-1836-4c15-a7fa-46631fb756d4"
+        AZURE_RESOURCE_GROUP: "rg-new4"
+        AZURE_SUBSCRIPTION_ID: "443b0799-279f-401e-a220-aa1463a7710f"
+      shell: pwsh
