@@ -21,8 +21,6 @@ jobs:
         uses: fjogeleit/yaml-update-action@main
         with:
           valueFile: 'testing.yaml'
-          propertyPath: 'approach_classifier.openai_settings.engine'
-          value: 'chat'
           commitChange: false
           masterBranchName: main
           changes: |
@@ -34,7 +32,7 @@ jobs:
               "unstructured_search_query_generation.openai_settings.engine": "chat",
               "unstructured_final_answer_generation.openai_settings.engine": "chat",
               "unstructured_final_answer_generation.openai_settings.model_name": "gpt-35-turbo",
-              "embeddings.openai_settings.engine": "embedding",
+              "embeddings.openai_settings.engine": "embedding"
             }
 
       - name: Print first 20 lines of testing.yaml
