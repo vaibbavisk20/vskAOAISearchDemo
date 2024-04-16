@@ -90,6 +90,17 @@ runs:
         AZURE_SUBSCRIPTION_ID: "443b0799-279f-401e-a220-aa1463a7710f"
       shell: pwsh
 
+    - name: Install and configure Azure PowerShell module
+      shell: pwsh  # Specify PowerShell Core as the shell
+      run: |
+        $minAzModuleVersion = '5.6.0'
+        if (!(Test-Path "C:\Modules\az_$minAzModuleVersion")) {
+          Install-Module -Name Az -AllowClobber -Scope CurrentUser -Force
+          Save-Module -Path "C:\Modules\az_$minAzModuleVersion" -Name Az -RequiredVersion $minAzModuleVersion -Force -ErrorAction Stop
+        }
+        $env:PSModulePath = "C:\Modules\az_$($minAzModuleVersion);$($env:PSModulePath)"
+        Import-Module Az
+        
     - name: Deploy Application
       run: azd up
       working-directory: AOAISearchDemo

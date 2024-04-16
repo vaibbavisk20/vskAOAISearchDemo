@@ -13,6 +13,7 @@ permissions:
   id-token: write
   contents: read
 
+
 jobs:
   deploy-resources-to-azure:
     runs-on: ubuntu-latest
