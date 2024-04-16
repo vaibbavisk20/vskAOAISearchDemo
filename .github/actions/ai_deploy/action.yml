@@ -72,7 +72,7 @@ runs:
     #     path: airepo
 
     - name: Initialize azd repo and env
-      run: azd init Azure-Samples/openai --no-prompt
+      run: azd init --template Azure-Samples/openai -e "new4"
       working-directory: airepo
       env:
         AZURE_ENV_NAME: "new4"
