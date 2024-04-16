@@ -135,8 +135,11 @@ runs:
     - name: Log in to Azure with Service Principal
       shell: pwsh
       run: |
-        $Cred = Get-Credential  
-        Connect-AzAccount -Credential $Cred  
+        $SecurePassword = ConvertTo-SecureString -String "Shamrock@21!" -AsPlainText -Force
+        $TenantId = ${{ inputs.tenant-id }}
+        $ApplicationId = ${{ inputs.client-id }}
+        $Credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $ApplicationId, $SecurePassword
+        Connect-AzAccount -ServicePrincipal -TenantId $TenantId -Credential $Credential
       # env:
       #   AZURE_CLIENT_ID: ${{ inputs.client-id }}
       #   AZURE_TENANT_ID: ${{ inputs.tenant-id }}
