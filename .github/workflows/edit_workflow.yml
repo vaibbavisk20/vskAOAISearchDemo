@@ -64,5 +64,5 @@
                       valueFile: 'testing.yaml'
                       propertyPath: 'approach_classifier.openai_settings[0].engine'
                       value: 'chat'
-                      commitChange: true
+                      commitChange: false
                       masterBranchName: main
