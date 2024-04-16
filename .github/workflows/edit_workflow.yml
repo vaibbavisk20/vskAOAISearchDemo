@@ -17,26 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      # - name: Update values.yaml
-      #   uses: fjogeleit/yaml-update-action@main
-      #   with:
-      #     repository: vaibbavisk20/demo-repo
-      #     commitChange: false
-      #     masterBranchName: main
-      #     changes: |
-      #       {
-      #         "testing.yaml": {
-      #           "approach_classifier.openai_settings.engine": "chat",
-      #           "structured_query_nl_to_sql.openai_settings.engine": "chat",
-      #           "structured_query_nl_to_sql.model_params.model_name": "gpt-35-turbo"
-      #           "structured_final_answer_generation.openai_settings.engine": "chat",
-      #           "unstructured_search_query_generation.openai_settings.engine": "chat",
-      #           "unstructured_final_answer_generation.openai_settings.engine": "chat",
-      #           "unstructured_final_answer_generation.model_params.model_name": "gpt-35-turbo",
-      #           "embeddings.openai_settings.engine": "embedding"
-      #         }
-      #       }
-
+    
       - name: Checkout AI Repository
         uses: actions/checkout@v3
         with:
@@ -65,7 +46,7 @@ jobs:
             }
           workDir: airepo
 
-      - name: Print first 20 lines of testing.yaml
+      - name: Print bot_config.yaml
         run: |
           Get-Content -Path ./End_to_end_Solutions/AOAISearchDemo/app/backend/bot_config.yaml -TotalCount 165
         shell: pwsh
