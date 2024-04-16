@@ -152,7 +152,7 @@ runs:
       
     - name: Deploy Application
       run: azd up --no-prompt
-      working-directory: airepo/openai/End_to_end_Solutions/AOAISearchDemo
+      working-directory: airepo/End_to_end_Solutions/AOAISearchDemo
       env:
         AZURE_ENV_NAME: "new4"
         AZURE_LOCATION: "eastus"
