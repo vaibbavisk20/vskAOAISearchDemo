@@ -58,4 +58,4 @@ jobs:
         run: |
           Get-Content -Path ./End_to_end_Solutions/AOAISearchDemo/app/backend/bot_config.yaml -TotalCount 80
         shell: pwsh
-        working-directory: ./End_to_end_Solutions/AOAISearchDemo/app/backend
+        working-directory: End_to_end_Solutions/AOAISearchDemo/app/backend
