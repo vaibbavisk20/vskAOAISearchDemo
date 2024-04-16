@@ -17,26 +17,45 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Update values.yaml
+      # - name: Update values.yaml
+      #   uses: fjogeleit/yaml-update-action@main
+      #   with:
+      #     repository: vaibbavisk20/demo-repo
+      #     commitChange: false
+      #     masterBranchName: main
+      #     changes: |
+      #       {
+      #         "testing.yaml": {
+      #           "approach_classifier.openai_settings.engine": "chat",
+      #           "structured_query_nl_to_sql.openai_settings.engine": "chat",
+      #           "structured_query_nl_to_sql.openai_settings.model_name": "gpt-35-turbo"
+      #           "structured_final_answer_generation.openai_settings.engine": "chat",
+      #           "unstructured_search_query_generation.openai_settings.engine": "chat",
+      #           "unstructured_final_answer_generation.openai_settings.engine": "chat",
+      #           "unstructured_final_answer_generation.openai_settings.model_name": "gpt-35-turbo",
+      #           "embeddings.openai_settings.engine": "embedding"
+      #         }
+      #       }
+
+      - name: Checkout AI Repository
+        uses: actions/checkout@v3
+        with:
+          repository: openai
+          path: airepo
+
+      - name: Update 
         uses: fjogeleit/yaml-update-action@main
         with:
-          repository: vaibbavisk20/demo-repo
-          commitChange: false
+          valueFile: 'End_to_end_Solutions/AOAISearchDemo/app/backend/bot_config.yaml'
+          propertyPath: 'approach_classifier.openai_settings.engine'
+          value: chat
+          repository: openai
           masterBranchName: main
-          changes: |
-            {
-              "testing.yaml": {
-                "approach_classifier.openai_settings.engine": "chat",
-                "structured_query_nl_to_sql.openai_settings.engine": "chat",
-                "structured_query_nl_to_sql.openai_settings.model_name": "gpt-35-turbo"
-                "structured_final_answer_generation.openai_settings.engine": "chat",
-                "unstructured_search_query_generation.openai_settings.engine": "chat",
-                "unstructured_final_answer_generation.openai_settings.engine": "chat",
-                "unstructured_final_answer_generation.openai_settings.model_name": "gpt-35-turbo",
-                "embeddings.openai_settings.engine": "embedding"
-              }
-            }
+          commitChange: false
+          workDir: infrastructure
+
       - name: Print first 20 lines of testing.yaml
         run: |
-          Get-Content -Path ./testing.yaml -TotalCount 80
+          Get-Content -Path ./End_to_end_Solutions/AOAISearchDemo/app/backend/bot_config.yaml -TotalCount 80
         shell: pwsh
+        working-directory: ./End_to_end_Solutions/AOAISearchDemo/app/backend
