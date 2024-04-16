@@ -55,7 +55,13 @@ jobs:
           changes: |
             {
               "approach_classifier.openai_settings.engine": "chat",
-              "structured_query_nl_to_sql.openai_settings.engine": "chat"
+              "structured_query_nl_to_sql.openai_settings.engine": "chat",
+              "structured_final_answer_generation.openai_settings.engine": "chat",
+              "unstructured_search_query_generation.openai_settings.engine": "chat",
+              "unstructured_final_answer_generation.openai_settings.engine": "chat",
+              "embeddings.openai_settings.engine": "embedding",
+              "structured_query_nl_to_sql.openai_settings.model_name": `${{ CONTEXT.GPT35_TURBO }}`,
+              # "unstructured_final_answer_generation.openai_settings.model_name": "gpt-35-turbo",
             }
           workDir: airepo
 
