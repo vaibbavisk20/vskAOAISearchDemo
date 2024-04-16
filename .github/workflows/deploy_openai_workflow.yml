@@ -1,9 +1,9 @@
 name: Workflow to deploy OpenAI resource to Azure
 
 on:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
   pull_request:
     branches:
       - main
