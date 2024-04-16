@@ -52,7 +52,7 @@ jobs:
           repository: Azure-Samples/openai
           masterBranchName: main
           commitChange: false
-          workDir: infrastructure
+          workDir: airepo
 
       - name: Print first 20 lines of testing.yaml
         run: |
