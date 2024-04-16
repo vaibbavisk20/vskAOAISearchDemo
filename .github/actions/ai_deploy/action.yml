@@ -110,7 +110,7 @@ runs:
     #     Connect-AzAccount -ServicePrincipal -Credential $psCredential -TenantId $env:AZURE_TENANT_ID
 
     - name: Deploy Application
-      run: azd up
+      run: azd up --no-prompt
       working-directory: AOAISearchDemo
       env:
         AZURE_ENV_NAME: "new4"
@@ -129,7 +129,6 @@ runs:
         AZURE_OPENAI_MODEL_VERSION: "0613"
         AZURE_OPENAI_RESOURCE_GROUP: "vsk-ai-rg"
         AZURE_OPENAI_SERVICE: "vsk-openai"
-        AZURE_PRINCIPAL_ID: "556689e1-1836-4c15-a7fa-46631fb756d4"
         AZURE_RESOURCE_GROUP: "rg-new4"
         AZURE_SUBSCRIPTION_ID: "443b0799-279f-401e-a220-aa1463a7710f"
       shell: pwsh
