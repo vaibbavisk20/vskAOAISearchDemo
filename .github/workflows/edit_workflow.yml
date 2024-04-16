@@ -55,8 +55,7 @@ jobs:
           changes: |
             {
               "approach_classifier.openai_settings.engine": "chat",
-              "structured_query_nl_to_sql.openai_settings.engine": "chat",
-
+              "structured_query_nl_to_sql.openai_settings.engine": "chat"
             }
           workDir: airepo
 
