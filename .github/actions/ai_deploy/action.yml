@@ -88,7 +88,6 @@ runs:
         AZURE_PRINCIPAL_ID: "556689e1-1836-4c15-a7fa-46631fb756d4"
         AZURE_RESOURCE_GROUP: "rg-new4"
         AZURE_SUBSCRIPTION_ID: "443b0799-279f-401e-a220-aa1463a7710f"
-        azd env list
       shell: pwsh
 
     - name: Deploy Application
