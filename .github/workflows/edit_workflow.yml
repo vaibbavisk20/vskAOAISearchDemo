@@ -1,68 +1,32 @@
+name: 'Workflow to edit Yaml file'
+on:
+  push:
+    branches:
+      - main
 
-# name: Workflow to deploy Open AI Search Model on azure
+permissions:
+  id-token: write
+  contents: read
+  checks: write
+  issues: write
+  packages: write
 
-# on:
-#   push:
-#     branches:
-#       - main
-#   pull_request:
-#     branches:
-#       - main
-#   workflow_dispatch:
+jobs:
+  test-update-file:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
 
-# permissions:
-#   id-token: write
-#   contents: read
+      - name: Update values.yaml
+        uses: fjogeleit/yaml-update-action@main
+        with:
+          valueFile: 'testing.yaml'
+          propertyPath: 'approach_classifier.openai_settings.engine'
+          value: 'chat'
+          commitChange: false
+          masterBranchName: main
 
-# jobs:
-#   deploy-resources-to-azure:
-#     runs-on: ubuntu-latest
-#     steps:
-#         - name: Checkout master
-#           uses: actions/checkout@v3
-          
-#         - name: Edit yaml file
-#           uses: rmeneely/update-yaml@v1
-#           with:
-#             infile: testing.yaml
-#             varlist: 'approach_classifier.openai_settings.engine=chat'
-          # uses: fjogeleit/yaml-update-action@main
-          # with:
-          #   valueFile: 'testing.yaml'
-          #   propertyPath: 'approach_classifier.openai_settings.engine'
-          #   value: chat
-          #   commitChange: true
-          #   createPR: true
-            # changes: |
-            #   {
-            #     "testing.yaml": {
-            #       "approach_classifier.openai_settings.engine": "chat",
-            #     },
-            #   }
-
-            name: 'Workflow to edit Yaml file'
-            on:
-              push:
-                branches:
-                  - main
-            
-            permissions:
-              id-token: write
-              contents: read
-              checks: write
-              issues: write
-              packages: write
-            
-            jobs:
-              test-update-file:
-                runs-on: ubuntu-latest
-                steps:
-                  - uses: actions/checkout@v3
-                  - name: Update values.yaml
-                    uses: fjogeleit/yaml-update-action@main
-                    with:
-                      valueFile: 'testing.yaml'
-                      propertyPath: 'approach_classifier.openai_settings.engine'
-                      value: 'chat'
-                      commitChange: false
-                      masterBranchName: main
+      - name: Print first 20 lines of testing.yaml
+        run: |
+          Get-Content -Path ./testing.yaml -TotalCount 20
+        shell: pwsh
