@@ -132,16 +132,19 @@ runs:
       working-directory: airepo
 
 
-    # - name: Log in to Azure with Service Principal
-    #   shell: pwsh
-    #   env:
-    #     AZURE_CLIENT_ID: ${{ inputs.client-id }}
-    #     AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-    #     AZURE_SECRET: ${{ secrets.AZURE_SECRET }}
-    #   run: |
-    #     $clientSecret = ConvertTo-SecureString -String $env:AZURE_SECRET -AsPlainText -Force
-    #     $psCredential = New-Object System.Management.Automation.PSCredential($env:AZURE_CLIENT_ID, $clientSecret)
-    #     Connect-AzAccount -ServicePrincipal -Credential $psCredential -TenantId $env:AZURE_TENANT_ID
+    - name: Log in to Azure with Service Principal
+      shell: pwsh
+      run: |
+        $Cred = Get-Credential  
+        Connect-AzAccount -Credential $Cred  
+      # env:
+      #   AZURE_CLIENT_ID: ${{ inputs.client-id }}
+      #   AZURE_TENANT_ID: ${{ inputs.tenant-id }}
+      #   AZURE_SECRET: ${{ secrets.AZURE_SECRET }}
+      # run: |
+      #   $clientSecret = ConvertTo-SecureString -String $env:AZURE_SECRET -AsPlainText -Force
+      #   $psCredential = New-Object System.Management.Automation.PSCredential($env:AZURE_CLIENT_ID, $clientSecret)
+      #   Connect-AzAccount -ServicePrincipal -Credential $psCredential -TenantId $env:AZURE_TENANT_ID
 
     - name: List directories
       run: |
