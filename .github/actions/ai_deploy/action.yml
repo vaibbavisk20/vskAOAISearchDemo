@@ -109,7 +109,7 @@ runs:
 
     - name: Deploy Application
       run: azd up
-      working-directory: azd-repo
+      working-directory: AOAISearchDemo
       env:
         AZURE_ENV_NAME: "new4"
         AZURE_LOCATION: "eastus"
