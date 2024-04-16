@@ -54,7 +54,9 @@ jobs:
           commitChange: false
           changes: |
             {
-              "approach_classifier.openai_settings.engine": "chat"
+              "approach_classifier.openai_settings.engine": "chat",
+              "structured_query_nl_to_sql.openai_settings.model_name": "gpt-35-turbo"
+
             }
           workDir: airepo
 
