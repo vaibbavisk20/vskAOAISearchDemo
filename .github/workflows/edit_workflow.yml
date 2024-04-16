@@ -59,8 +59,7 @@ jobs:
               "structured_final_answer_generation.openai_settings.engine": "chat",
               "unstructured_search_query_generation.openai_settings.engine": "chat",
               "unstructured_final_answer_generation.openai_settings.engine": "chat",
-              "embeddings.openai_settings.engine": "embedding",
-              "structured_query_nl_to_sql.openai_settings.model_name": ${{ env.GPT35_TURBO }}
+              "embeddings.openai_settings.engine": "embedding"
             }
           workDir: airepo
 
