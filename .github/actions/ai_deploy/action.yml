@@ -143,6 +143,13 @@ runs:
     #     $psCredential = New-Object System.Management.Automation.PSCredential($env:AZURE_CLIENT_ID, $clientSecret)
     #     Connect-AzAccount -ServicePrincipal -Credential $psCredential -TenantId $env:AZURE_TENANT_ID
 
+    - name: List directories
+      run: |
+        dir
+      shell: pwsh
+      working-directory: airepo
+
+      
     - name: Deploy Application
       run: azd up --no-prompt
       working-directory: airepo/openai/End_to_end_Solutions/AOAISearchDemo
