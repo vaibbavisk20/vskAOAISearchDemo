@@ -136,7 +136,7 @@ runs:
     - name: Log in to Azure with Service Principal
       shell: pwsh
       run: |
-        $SecurePassword = ConvertTo-SecureString -String `${{ inputs.applicationPassword }}` -AsPlainText -Force
+        $SecurePassword = `${{ inputs.applicationPassword }}`
         $TenantId = `${{ inputs.tenant-id }}`
         $ApplicationId = `${{ inputs.client-id }}`
         $Credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $ApplicationId, $SecurePassword
