@@ -133,8 +133,8 @@ runs:
       shell: pwsh
       run: |
         $SecurePassword = ConvertTo-SecureString -String ${{ inputs.applicationPassword }} -AsPlainText -Force
-        $TenantId = `${{ inputs.tenant-id }}`
-        $ApplicationId = `${{ inputs.client-id }}`
+        $TenantId = ${{ inputs.tenant-id }}
+        $ApplicationId = ${{ inputs.client-id }}
         $Credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $ApplicationId, $SecurePassword
         Connect-AzAccount -ServicePrincipal -TenantId $TenantId -Credential $Credential
 
