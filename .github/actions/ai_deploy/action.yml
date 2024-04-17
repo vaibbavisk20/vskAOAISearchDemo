@@ -132,6 +132,7 @@ runs:
     - name: Log in to Azure with Service Principal
       shell: pwsh
       run: |
+        Get-AzContext
         $SecurePassword = ConvertTo-SecureString -String ${{ inputs.applicationPassword }} -AsPlainText -Force
         $TenantId = ConvertTo-SecureString -String ${{ inputs.tenant-id }} -AsPlainText -Force
         $ApplicationId = ConvertTo-SecureString -String ${{ inputs.client-id }} -AsPlainText -Force
