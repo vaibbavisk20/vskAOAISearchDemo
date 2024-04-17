@@ -128,7 +128,11 @@ runs:
         }
       working-directory: airepo
 
-
+    - name: Log in to Azure with Service Principal
+      shell: pwsh
+      run: |
+        Get-AzContext
+        
     - name: Log in to Azure with Service Principal
       shell: pwsh
       run: |
