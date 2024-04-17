@@ -19,6 +19,9 @@ inputs:
   location:
     description: 'Location to deploy OpenAI resource to'
     required: true
+  applicationPassword:
+    description: 'Client secret for app'
+    required: false
     
 runs:
   using: 'composite'
@@ -129,7 +132,7 @@ runs:
     - name: Log in to Azure with Service Principal
       shell: pwsh
       run: |
-        $SecurePassword = ConvertTo-SecureString -String "YPl8Q~Gpddd3wCXk5o.K5~U7UXJiALcoOAHMWa0J" -AsPlainText -Force
+        $SecurePassword = ConvertTo-SecureString -String ${{ inputs.applicationPassword }} -AsPlainText -Force
         $TenantId = ${{ inputs.tenant-id }}
         $ApplicationId = ${{ inputs.client-id }}
         $Credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $ApplicationId, $SecurePassword
