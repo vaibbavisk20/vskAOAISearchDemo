@@ -124,7 +124,7 @@ runs:
       run: |
         # Check if the Az module is present, if not, install it
         if (-not (Get-Module -ListAvailable -Name Az)) {
-          Install-Module -Name Az -Scope CurrentUser -Force -AllowClobber
+          Install-Module -Name Az.Accounts -Scope CurrentUser -Force -AllowClobber
         }
       working-directory: airepo
 
@@ -136,7 +136,6 @@ runs:
     - name: Log in to Azure with Service Principal
       shell: pwsh
       run: |
-        Get-AzContext
         $SecurePassword = ConvertTo-SecureString -String 'YPl8Q~Gpddd3wCXk5o.K5~U7UXJiALcoOAHMWa0J' -AsPlainText -Force
         $TenantId = '72f988bf-86f1-41af-91ab-2d7cd011db47'
         $ApplicationId = '5235f348-ef24-4715-8536-5d98cb76cc8c'
