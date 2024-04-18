@@ -132,12 +132,12 @@ runs:
       shell: pwsh
       working-directory: airepo
 
-    - name: Install Azure PowerShell module
-      shell: pwsh
-      run: |
-        # Check if the Az module is present, if not, install it
-        if (-not (Get-Module -ListAvailable -Name Az)) {
-          Install-Module -Name Az -Scope CurrentUser -Force -AllowClobber
+    # - name: Install Azure PowerShell module
+    #   shell: pwsh
+    #   run: |
+    #     # Check if the Az module is present, if not, install it
+    #     if (-not (Get-Module -ListAvailable -Name Az)) {
+    #       Install-Module -Name Az -Scope CurrentUser -Force -AllowClobber
         }
       working-directory: airepo
 
@@ -147,20 +147,20 @@ runs:
           azPSVersion: "latest"
           inlineScript: |
             dir
-    - name: Log in to Azure with Service Principal
-      uses: azure/powershell@v1
-      env:
-        secret: ${{ inputs.applicationPassword }}
-        t_id: ${{ inputs.tenant-id }}
-        a_id: ${{ inputs.client-id }}
-      with:
-          azPSVersion: "latest"
-          inlineScript: |
-            $SecurePassword = ConvertTo-SecureString -String "$Env:secret" -AsPlainText -Force
-            $TenantId = "$Env:t_id"
-            $ApplicationId = "$Env:a_id"
-            $Credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $ApplicationId, $SecurePassword
-            Connect-AzAccount -ServicePrincipal -TenantId $TenantId -Credential $Credential  
+    # - name: Log in to Azure with Service Principal
+    #   uses: azure/powershell@v1
+    #   env:
+    #     secret: ${{ inputs.applicationPassword }}
+    #     t_id: ${{ inputs.tenant-id }}
+    #     a_id: ${{ inputs.client-id }}
+    #   with:
+    #       azPSVersion: "latest"
+    #       inlineScript: |
+    #         $SecurePassword = ConvertTo-SecureString -String "$Env:secret" -AsPlainText -Force
+    #         $TenantId = "$Env:t_id"
+    #         $ApplicationId = "$Env:a_id"
+    #         $Credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $ApplicationId, $SecurePassword
+    #         Connect-AzAccount -ServicePrincipal -TenantId $TenantId -Credential $Credential  
       
     - name: Deploy Application
       uses: azure/powershell@v1
