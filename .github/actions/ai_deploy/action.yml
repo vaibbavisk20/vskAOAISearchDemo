@@ -148,13 +148,24 @@ runs:
         
     - name: Log in to Azure with Service Principal
       shell: pwsh
+      env:
+        secret: ${{ inputs.applicationPassword }}
+        t_id: ${{ inputs.tenant-id }}
+        a_id: ${{ inputs.client-id }}
+
       run: |
-        $SecurePassword = ConvertTo-SecureString -String 'YPl8Q~Gpddd3wCXk5o.K5~U7UXJiALcoOAHMWa0J' -AsPlainText -Force
-        $TenantId = '72f988bf-86f1-41af-91ab-2d7cd011db47'
-        $ApplicationId = '5235f348-ef24-4715-8536-5d98cb76cc8c'
+        $SecurePassword = ConvertTo-SecureString -String "$Env:secret" -AsPlainText -Force
+        $TenantId = "$Env:t_id"
+        $ApplicationId = "$Env:a_id"
         $Credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $ApplicationId, $SecurePassword
         Connect-AzAccount -ServicePrincipal -TenantId $TenantId -Credential $Credential
 
+- name: Connecting to shared drive
+  env:
+    username: ${{ secrets.TEST_USERNAME }}
+    password: ${{ secrets.TEST_PASSWORD }}
+  run: |
+    "$Env:GITHUB_WORKSPACE\Connect-Drive.ps1" "$Env:username" "$Env:password"
 
     - name: List directories
       run: |
