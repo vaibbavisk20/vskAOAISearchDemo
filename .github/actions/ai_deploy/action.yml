@@ -122,15 +122,15 @@ runs:
       shell: pwsh
       working-directory: airepo
 
-    - name: 'Deploy Application'
-      run: |
-        Clear-AzContext -Force
-        azd up --no-prompt -e new5
-      working-directory: airepo/End_to_end_Solutions/AOAISearchDemo
-      env:
-        AZURE_ENV_NAME: "new6"
-        AZURE_LOCATION: "eastus"
-        AZURE_OPENAI_LOCATION: "eastus"
-        AZURE_SUBSCRIPTION_ID: "443b0799-279f-401e-a220-aa1463a7710f"
-        AZURE_PRINCIPAL_ID: "556689e1-1836-4c15-a7fa-46631fb756d4"
-      shell: pwsh
+    # - name: 'Deploy Application'
+    #   run: |
+    #     Clear-AzContext -Force
+    #     azd up --no-prompt -e new5
+    #   working-directory: airepo/End_to_end_Solutions/AOAISearchDemo
+    #   env:
+    #     AZURE_ENV_NAME: "new6"
+    #     AZURE_LOCATION: "eastus"
+    #     AZURE_OPENAI_LOCATION: "eastus"
+    #     AZURE_SUBSCRIPTION_ID: "443b0799-279f-401e-a220-aa1463a7710f"
+    #     AZURE_PRINCIPAL_ID: "556689e1-1836-4c15-a7fa-46631fb756d4"
+    #   shell: pwsh
