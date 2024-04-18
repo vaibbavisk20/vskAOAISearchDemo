@@ -142,6 +142,8 @@ runs:
       uses: azure/powershell@v1
       with:
           azPSVersion: "latest"
+          errorActionPreference: Stop
+          failOnStandardError: true
           inlineScript: |
             cd airepo/End_to_end_Solutions/AOAISearchDemo
             $response = az rest --method GET --uri https://graph.microsoft.com/v1.0/me | ConvertFrom-Json
