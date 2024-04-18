@@ -51,3 +51,15 @@ jobs:
           Get-Content -Path ./End_to_end_Solutions/AOAISearchDemo/app/backend/bot_config.yaml -TotalCount 165
         shell: pwsh
         working-directory: airepo
+
+      - name: 'Update json-values description'
+        uses: restackio/update-json-values-action@v1.0.0
+        with:
+          file: ./End_to_end_Solutions/AOAISearchDemo/infra/main.parameters.json
+          values: "{'parameters.principalId.value': '556689e1-1836-4c15-a7fa-46631fb756d4'}"
+
+      - name: Print bot_config.yaml
+        run: |
+          Get-Content -Path ./End_to_end_Solutions/AOAISearchDemo/infra/main.parameters.json -TotalCount 20
+        shell: pwsh
+        working-directory: airepo
