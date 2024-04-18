@@ -117,13 +117,6 @@ runs:
         Get-Content -Path ./End_to_end_Solutions/AOAISearchDemo/app/backend/bot_config.yaml -TotalCount 1
       shell: pwsh
       working-directory: airepo
-
-    - name: 'dir'
-      uses: azure/powershell@v1
-      with:
-          azPSVersion: "latest"
-          inlineScript: |
-            Get-AzContext
             
     - name: 'Update azure.yaml to skip Connect-AzAccount step'
       uses: fjogeleit/yaml-update-action@main
@@ -138,18 +131,30 @@ runs:
           }
         workDir: airepo
 
-    - name: 'Deploy Application'
-      uses: azure/powershell@v1
-      with:
-          azPSVersion: "latest"
-          errorActionPreference: Stop
-          failOnStandardError: true
-          inlineScript: |
-            cd airepo/End_to_end_Solutions/AOAISearchDemo
-            $response = az rest --method GET --uri https://graph.microsoft.com/v1.0/me | ConvertFrom-Json
-            $id = $response.id 
-            azd env set AZURE_PRINCIPAL_ID $id
-            azd up --no-prompt
+    - name: Log in to Azure with Service Principal
+      shell: pwsh
+      env:
+        secret: ${{ inputs.applicationPassword }}
+        t_id: ${{ inputs.tenant-id }}
+        a_id: ${{ inputs.client-id }}
+      run: |
+        $SecurePassword = ConvertTo-SecureString -String "$Env:secret" -AsPlainText -Force
+        $TenantId = "$Env:t_id"
+        $ApplicationId = "$Env:a_id"
+        $Credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $ApplicationId, $SecurePassword
+        Connect-AzAccount -ServicePrincipal -TenantId $TenantId -Credential $Credential
+    
+    - name: 'Print bot_config.yaml'
+      run: |
+        $response = az rest --method GET --uri https://graph.microsoft.com/v1.0/me | ConvertFrom-Json
+        $id = $response.id 
+        azd env set AZURE_PRINCIPAL_ID $id
+      shell: pwsh
+      working-directory: airepo
+      
+    - name: Deploy Application
+      run: azd up --no-prompt
+      working-directory: airepo/End_to_end_Solutions/AOAISearchDemo
       env:
         AZURE_ENV_NAME: "new4"
         AZURE_LOCATION: "eastus"
@@ -169,3 +174,4 @@ runs:
         AZURE_OPENAI_SERVICE: "vsk-openai"
         AZURE_RESOURCE_GROUP: "rg-new4"
         AZURE_SUBSCRIPTION_ID: "443b0799-279f-401e-a220-aa1463a7710f"
+      shell: pwsh
