@@ -112,22 +112,9 @@ runs:
           }
         workDir: airepo
 
-    - name: 'Update azure.yaml to skip Connect-AzAccount step'
-      uses: fjogeleit/yaml-update-action@main
-      with:
-        valueFile: 'End_to_end_Solutions/AOAISearchDemo/azure.yaml'
-        repository: Azure-Samples/openai
-        masterBranchName: main
-        commitChange: false
-        changes: |
-          {
-            "hooks.preprovision.run": "Install-Module AzureAD -Force;Connect-AzAccount;$principalId = (Get-AzADUser -UserPrincipalName (Get-AzContext).Account).Id;azd env set AZURE_PRINCIPAL_ID $principalId"
-          }
-        workDir: airepo
-
     - name: 'Print bot_config.yaml'
       run: |
-        Get-Content -Path ./End_to_end_Solutions/AOAISearchDemo/app/backend/bot_config.yaml -TotalCount 165
+        Get-Content -Path ./End_to_end_Solutions/AOAISearchDemo/app/backend/bot_config.yaml -TotalCount 1
       shell: pwsh
       working-directory: airepo
 
