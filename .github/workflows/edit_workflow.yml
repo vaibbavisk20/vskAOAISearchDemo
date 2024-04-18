@@ -2,7 +2,7 @@ name: 'Workflow to edit Yaml file'
 on:
   push:
     branches:
-      - main
+      - master
 
 permissions:
   id-token: write
