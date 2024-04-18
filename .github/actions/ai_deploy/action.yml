@@ -138,7 +138,7 @@ runs:
 
     - name: 'Deploy Application'
       run: |
-        Clear-AzContext
+        Clear-AzContext -Force
         azd up --no-prompt -e new5
       working-directory: airepo/End_to_end_Solutions/AOAISearchDemo
       env:
