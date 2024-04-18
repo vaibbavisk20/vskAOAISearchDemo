@@ -118,6 +118,7 @@ runs:
         azPSVersion: "latest"
         inlineScript: |
           cd airepo/End_to_end_Solutions/AOAISearchDemo
+          az ad app permission admin-consent --id "fd4bbf3c-f43c-4714-841d-a7dbaf2338e5"
           azd env new new7
           azd env set AZURE_ENV_NAME "new7"
           azd env set AZURE_LOCATION "eastus"
