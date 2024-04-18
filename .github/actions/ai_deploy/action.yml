@@ -113,7 +113,7 @@ runs:
       with:
           azPSVersion: "latest"
           inlineScript: |
-            cd End_to_end_Solutions/AOAISearchDemo
+            cd airepo/End_to_end_Solutions/AOAISearchDemo
             $SecurePassword = ConvertTo-SecureString -String "$Env:secret" -AsPlainText -Force
             $TenantId = "$Env:t_id"
             $ApplicationId = "$Env:a_id"
