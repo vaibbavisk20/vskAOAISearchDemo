@@ -125,6 +125,13 @@ runs:
           }
         workDir: airepo
 
+    - name: Print azure.yaml
+      run: |
+        Get-Content -Path ./End_to_end_Solutions/AOAISearchDemo/azure.yaml -TotalCount 165
+      shell: pwsh
+      working-directory: airepo
+
+
     - name: Install Azure PowerShell module
       shell: pwsh
       run: |
@@ -165,6 +172,8 @@ runs:
       
     - name: Deploy Application
       run: |
+        azd env select new5
+        azd env set AZURE_PRINCIPAL_ID "556689e1-1836-4c15-a7fa-46631fb756d4"
         azd up --no-prompt
       working-directory: airepo/End_to_end_Solutions/AOAISearchDemo
       env:
