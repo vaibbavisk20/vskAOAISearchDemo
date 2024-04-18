@@ -66,26 +66,12 @@ runs:
       shell: pwsh
 
     - name: 'Initialize azd repo and env'
-      run: azd init --template Azure-Samples/openai -e "new5"
+      run: azd init --template Azure-Samples/openai -e "new6"
       working-directory: airepo
       env:
-        AZURE_ENV_NAME: "new5"
+        AZURE_ENV_NAME: "new6"
         AZURE_LOCATION: "eastus"
-        AZURE_OPENAI_CLASSIFIER_DEPLOYMENT: "completions"
-        AZURE_OPENAI_CLASSIFIER_MODEL: "gpt-35-turbo-instruct"
-        AZURE_OPENAI_CLASSIFIER_MODEL_VERSION: "0914"
-        AZURE_OPENAI_DEPLOYMENT: "chat"
-        AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT: "embedding"
-        AZURE_OPENAI_EMBEDDINGS_DIMENSIONS: 1536
-        AZURE_OPENAI_EMBEDDINGS_MODEL: "text-embedding-ada-002"
-        AZURE_OPENAI_EMBEDDINGS_MODEL_VERSION: 2
-        AZURE_OPENAI_EMBEDDINGS_TOKEN_LIMIT: 8191
         AZURE_OPENAI_LOCATION: "eastus"
-        AZURE_OPENAI_MODEL: "gpt-35-turbo"
-        AZURE_OPENAI_MODEL_VERSION: "0613"
-        AZURE_OPENAI_RESOURCE_GROUP: "vsk-ai-rg"
-        AZURE_OPENAI_SERVICE: "vsk-openai"
-        AZURE_RESOURCE_GROUP: "rg-new4"
         AZURE_SUBSCRIPTION_ID: "443b0799-279f-401e-a220-aa1463a7710f"
       shell: pwsh
 
@@ -142,22 +128,9 @@ runs:
         azd up --no-prompt -e new5
       working-directory: airepo/End_to_end_Solutions/AOAISearchDemo
       env:
-        AZURE_ENV_NAME: "new5"
+         AZURE_ENV_NAME: "new6"
         AZURE_LOCATION: "eastus"
-        AZURE_OPENAI_CLASSIFIER_DEPLOYMENT: "completions"
-        AZURE_OPENAI_CLASSIFIER_MODEL: "gpt-35-turbo-instruct"
-        AZURE_OPENAI_CLASSIFIER_MODEL_VERSION: "0914"
-        AZURE_OPENAI_DEPLOYMENT: "chat"
-        AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT: "embedding"
-        AZURE_OPENAI_EMBEDDINGS_DIMENSIONS: 1536
-        AZURE_OPENAI_EMBEDDINGS_MODEL: "text-embedding-ada-002"
-        AZURE_OPENAI_EMBEDDINGS_MODEL_VERSION: 2
-        AZURE_OPENAI_EMBEDDINGS_TOKEN_LIMIT: 8191
         AZURE_OPENAI_LOCATION: "eastus"
-        AZURE_OPENAI_MODEL: "gpt-35-turbo"
-        AZURE_OPENAI_MODEL_VERSION: "0613"
-        AZURE_OPENAI_RESOURCE_GROUP: "vsk-ai-rg"
-        AZURE_OPENAI_SERVICE: "vsk-openai"
         AZURE_SUBSCRIPTION_ID: "443b0799-279f-401e-a220-aa1463a7710f"
         AZURE_PRINCIPAL_ID: "556689e1-1836-4c15-a7fa-46631fb756d4"
       shell: pwsh
