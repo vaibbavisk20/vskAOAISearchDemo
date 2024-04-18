@@ -160,13 +160,6 @@ runs:
         $Credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $ApplicationId, $SecurePassword
         Connect-AzAccount -ServicePrincipal -TenantId $TenantId -Credential $Credential
 
-- name: Connecting to shared drive
-  env:
-    username: ${{ secrets.TEST_USERNAME }}
-    password: ${{ secrets.TEST_PASSWORD }}
-  run: |
-    "$Env:GITHUB_WORKSPACE\Connect-Drive.ps1" "$Env:username" "$Env:password"
-
     - name: List directories
       run: |
         dir
