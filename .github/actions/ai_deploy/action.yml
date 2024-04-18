@@ -154,13 +154,13 @@ runs:
       working-directory: airepo
 
     
-    - name: 'Print bot_config.yaml'
-      run: |
-        $response = az rest --method GET --uri https://graph.microsoft.com/v1.0/me | ConvertFrom-Json
-        $id = $response.id 
-        azd env set AZURE_PRINCIPAL_ID "yaya"
-      shell: pwsh
-      working-directory: airepo
+    # - name: 'Print bot_config.yaml'
+    #   run: |
+    #     $response = az rest --method GET --uri https://graph.microsoft.com/v1.0/me | ConvertFrom-Json
+    #     $id = $response.id 
+    #     azd env set AZURE_PRINCIPAL_ID "yaya"
+    #   shell: pwsh
+    #   working-directory: airepo
       
     - name: Deploy Application
       run: azd up --no-prompt
