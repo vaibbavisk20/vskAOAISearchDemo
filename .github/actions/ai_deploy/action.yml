@@ -160,14 +160,11 @@ runs:
         azd env get-values
       working-directory: airepo
 
-    
-    - name: 'Print bot_config.yaml'
-      run: |
-        Get-AzContext
-        # $response = az rest --method GET --uri https://graph.microsoft.com/v1.0/me | ConvertFrom-Json
-        # $id = $response.id 
-        # azd env set AZURE_PRINCIPAL_ID "yaya"
-      shell: pwsh
+    - name: Update json-values description
+      uses: restack/update-json-values-action@v1.0.0
+      with:
+        file: End_to_end_Solutions/AOAISearchDemo/inframain.parameters.json
+        values: "{'paramaters.principalId.vaue': '556689e1-1836-4c15-a7fa-46631fb756d4'}"
       working-directory: airepo
       
     - name: Deploy Application
