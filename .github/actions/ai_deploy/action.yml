@@ -95,19 +95,6 @@ runs:
           }
         workDir: airepo
 
-    - name: 'Update azure.yaml to skip Connect-AzAccount step'
-      uses: fjogeleit/yaml-update-action@main
-      with:
-        valueFile: 'End_to_end_Solutions/AOAISearchDemo/azure.yaml'
-        repository: Azure-Samples/openai
-        masterBranchName: main
-        commitChange: false
-        changes: |
-          {
-            "hooks.preprovision.run": "Install-Module AzureAD -Force"
-          }
-        workDir: airepo
-
     - name: 'Install Azure PowerShell module'
       run: |
         # Check if the Az module is present, if not, install it
