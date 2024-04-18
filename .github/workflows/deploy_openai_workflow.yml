@@ -18,8 +18,8 @@ jobs:
   deploy-resources-to-azure:
     runs-on: ubuntu-latest
     env:
-      AZURE_CLIENT_ID: ${{ var.AZURE_CLIENT_ID }}
-      AZURE_TENANT_ID: ${{ var.AZURE_TENANT_ID }}
+      AZURE_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
+      AZURE_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
       AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
     steps:
         - name: Checkout master
@@ -28,8 +28,8 @@ jobs:
         - name: Deploy a Open AI action
           uses: ./.github/actions/ai_deploy
           with:
-            client-id: ${{ var.AZURE_CLIENT_ID }}
-            tenant-id: ${{ var.AZURE_TENANT_ID }}
+            client-id: ${{ vars.AZURE_CLIENT_ID }}
+            tenant-id: ${{ vars.AZURE_TENANT_ID }}
             subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
             resource-group-name: ${{ secrets.AZURE_RG }}
             applicationPassword: ${{ secrets.APP_PASSWORD }}
