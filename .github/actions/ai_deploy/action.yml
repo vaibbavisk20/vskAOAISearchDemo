@@ -35,7 +35,7 @@ runs:
         client-id: ${{ inputs.client-id }}
         tenant-id: ${{ inputs.tenant-id }}
         subscription-id: ${{ inputs.subscription-id }}
-        enable-AzPSSession: true
+        enable-AzPSSession: false
   
     - name: 'Install azd'
       uses: Azure/setup-azd@v0.1.0
