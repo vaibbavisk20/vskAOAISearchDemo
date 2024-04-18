@@ -141,6 +141,12 @@ runs:
         }
       working-directory: airepo
 
+    - name: dir
+      uses: azure/powershell@v1
+      with:
+          azPSVersion: "latest"
+          inlineScript: |
+            dir
     - name: Log in to Azure with Service Principal
       uses: azure/powershell@v1
       env:
@@ -162,7 +168,7 @@ runs:
           azPSVersion: "latest"
           inlineScript: |
             azd up --no-prompt
-      working-directory: airepo/End_to_end_Solutions/AOAISearchDemo
+      # working-directory: airepo/End_to_end_Solutions/AOAISearchDemo
       env:
         AZURE_ENV_NAME: "new4"
         AZURE_LOCATION: "eastus"
