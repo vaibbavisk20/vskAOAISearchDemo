@@ -93,7 +93,7 @@ runs:
         AZURE_SUBSCRIPTION_ID: "443b0799-279f-401e-a220-aa1463a7710f"
       shell: pwsh
       
-    - name: Update 
+    - name: Update bot_config.yaml
       uses: fjogeleit/yaml-update-action@main
       with:
         valueFile: 'End_to_end_Solutions/AOAISearchDemo/app/backend/bot_config.yaml'
@@ -112,6 +112,19 @@ runs:
             "embeddings.openai_settings.engine": "embedding"
           }
         workDir: airepo
+
+      - name: Update azure.yaml to skip Connect-AzAccount step
+        uses: fjogeleit/yaml-update-action@main
+        with:
+          valueFile: 'End_to_end_Solutions/AOAISearchDemo/azure.yaml'
+          repository: Azure-Samples/openai
+          masterBranchName: main
+          commitChange: false
+          changes: |
+            {
+              "hooks.preprovision.run": "Install-Module AzureAD -Force;$principalId = (Get-AzADUser -UserPrincipalName (Get-AzContext).Account).Id;azd env set AZURE_PRINCIPAL_ID $principalId"
+            }
+          workDir: airepo
 
     - name: Print bot_config.yaml
       run: |

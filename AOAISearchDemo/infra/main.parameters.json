@@ -24,7 +24,7 @@
             "value": "S0"
         },
         "deployOpenAIModels": {
-            "value": false
+            "value": true
         },
         "gptDeploymentName": {
             "value": "${AZURE_OPENAI_DEPLOYMENT}"

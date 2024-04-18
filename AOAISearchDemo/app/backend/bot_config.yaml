@@ -156,7 +156,7 @@ unstructured_final_answer_generation:
     max_tokens: 800
     n: 1
   model_params:
-    model_name: "0613"
+    model_name: "gpt-35-turbo"
     total_max_tokens: 8192
 
 embeddings:
