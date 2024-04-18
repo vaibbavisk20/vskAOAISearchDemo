@@ -136,7 +136,7 @@ runs:
       with:
           azPSVersion: "latest"
           inlineScript: |
-            dir
+            Get-AzContext
 
     - name: 'Deploy Application'
       uses: azure/powershell@v1
@@ -144,7 +144,6 @@ runs:
           azPSVersion: "latest"
           inlineScript: |
             cd airepo/End_to_end_Solutions/AOAISearchDemo
-            Get-AzContext
             azd up --no-prompt
       env:
         AZURE_ENV_NAME: "new4"
