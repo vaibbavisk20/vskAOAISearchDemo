@@ -141,19 +141,6 @@ runs:
         }
       working-directory: airepo
 
-    # - name: Log in to Azure with Service Principal
-    #   shell: pwsh
-    #   env:
-    #     secret: ${{ inputs.applicationPassword }}
-    #     t_id: ${{ inputs.tenant-id }}
-    #     a_id: ${{ inputs.client-id }}
-    #   run: |
-    #     $SecurePassword = ConvertTo-SecureString -String "$Env:secret" -AsPlainText -Force
-    #     $TenantId = "$Env:t_id"
-    #     $ApplicationId = "$Env:a_id"
-    #     $Credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $ApplicationId, $SecurePassword
-    #     Connect-AzAccount -ServicePrincipal -TenantId $TenantId -Credential $Credential
-
     - name: Log in to Azure with Service Principal
       shell: pwsh
       run: |
@@ -169,9 +156,6 @@ runs:
       
     - name: Deploy Application
       run: |
-        # azd env new new5
-        # azd env set AZURE_PRINCIPAL_ID "556689e1-1836-4c15-a7fa-46631fb756d4"
-        # azd env get-values
         azd up --no-prompt -e new5
       working-directory: airepo/End_to_end_Solutions/AOAISearchDemo
       env:
@@ -193,10 +177,4 @@ runs:
         AZURE_OPENAI_SERVICE: "vsk-openai"
         AZURE_SUBSCRIPTION_ID: "443b0799-279f-401e-a220-aa1463a7710f"
         AZURE_PRINCIPAL_ID: "556689e1-1836-4c15-a7fa-46631fb756d4"
-      shell: pwsh
-
-    - name: Deploy Application
-      run: |
-        azd env get-values
-      working-directory: airepo/End_to_end_Solutions/AOAISearchDemo
       shell: pwsh
