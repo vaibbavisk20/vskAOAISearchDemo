@@ -117,17 +117,6 @@ runs:
       with:
         azPSVersion: "latest"
         inlineScript: |
-          az ad app permission admin-consent --id "fd4bbf3c-f43c-4714-841d-a7dbaf2338e5"
-
-    - name: 'Log in to Azure with Service Principal'
-      uses: azure/powershell@v1
-      env:
-        secret: ${{ inputs.applicationPassword }}
-        t_id: ${{ inputs.tenant-id }}
-        a_id: ${{ inputs.client-id }}
-      with:
-        azPSVersion: "latest"
-        inlineScript: |
           cd airepo/End_to_end_Solutions/AOAISearchDemo
           azd env new new7
           azd env set AZURE_ENV_NAME "new7"
