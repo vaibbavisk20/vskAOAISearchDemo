@@ -146,6 +146,11 @@ runs:
         $ApplicationId = "$Env:a_id"
         $Credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $ApplicationId, $SecurePassword
         Connect-AzAccount -ServicePrincipal -TenantId $TenantId -Credential $Credential
+
+    - name: Log in to Azure with Service Principal
+      shell: pwsh
+      run: |
+        azd env get-values
     
     - name: 'Print bot_config.yaml'
       run: |
