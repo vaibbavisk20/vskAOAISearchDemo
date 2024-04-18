@@ -165,7 +165,7 @@ runs:
       
     - name: Deploy Application
       run: |
-        azd env set AZURE_PRINCIPAL_ID "556689e1-1836-4c15-a7fa-46631fb756d4"
+        azd env set AZURE_PRINCIPAL_ID "vaibbavis@microsoft.com"
         azd up --no-prompt
       working-directory: airepo/End_to_end_Solutions/AOAISearchDemo
       env:
