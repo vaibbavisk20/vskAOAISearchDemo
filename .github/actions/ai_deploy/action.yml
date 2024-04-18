@@ -118,11 +118,6 @@ runs:
         azPSVersion: "latest"
         inlineScript: |
           cd airepo/End_to_end_Solutions/AOAISearchDemo
-          $SecurePassword = ConvertTo-SecureString -String "$Env:secret" -AsPlainText -Force
-          $TenantId = "$Env:t_id"
-          $ApplicationId = "$Env:a_id"
-          $Credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $ApplicationId, $SecurePassword
-          Connect-AzAccount -ServicePrincipal -TenantId $TenantId -Credential $Credential  
           azd env new new7
           azd env set AZURE_ENV_NAME "new7"
           azd env set AZURE_LOCATION "eastus"
