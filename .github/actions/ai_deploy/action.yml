@@ -22,7 +22,7 @@ inputs:
   applicationPassword:
     description: 'Client secret for app'
     required: false
-    
+
 runs:
   using: 'composite'
   steps:
@@ -36,7 +36,7 @@ runs:
         tenant-id: ${{ inputs.tenant-id }}
         subscription-id: ${{ inputs.subscription-id }}
         enable-AzPSSession: false
-  
+
     - name: 'Install azd'
       uses: Azure/setup-azd@v0.1.0
 
@@ -46,18 +46,15 @@ runs:
         node-version: 20
 
     - name: 'Create directory'
-      run: |
-        mkdir airepo
+      run: mkdir airepo
       shell: pwsh
 
     - name: 'Change directory'
-      run: |
-        cd airepo
+      run: cd airepo
       shell: pwsh
-      
+
     - name: 'List directories'
-      run: |
-        dir
+      run: dir
       shell: pwsh
 
     - name: 'Log in with Azure (Federated Credentials)'
@@ -91,7 +88,7 @@ runs:
         AZURE_RESOURCE_GROUP: "rg-new4"
         AZURE_SUBSCRIPTION_ID: "443b0799-279f-401e-a220-aa1463a7710f"
       shell: pwsh
-      
+
     - name: 'Update bot_config.yaml'
       uses: fjogeleit/yaml-update-action@main
       with:
@@ -111,7 +108,7 @@ runs:
             "embeddings.openai_settings.engine": "embedding"
           }
         workDir: airepo
-            
+
     - name: 'Update azure.yaml to skip Connect-AzAccount step'
       uses: fjogeleit/yaml-update-action@main
       with:
@@ -125,38 +122,34 @@ runs:
           }
         workDir: airepo
 
-    - name: Print azure.yaml
-      run: |
-        Get-Content -Path ./End_to_end_Solutions/AOAISearchDemo/azure.yaml -TotalCount 165
+    - name: 'Print azure.yaml'
+      run: Get-Content -Path ./End_to_end_Solutions/AOAISearchDemo/azure.yaml -TotalCount 165
       shell: pwsh
       working-directory: airepo
 
-
-    - name: Install Azure PowerShell module
-      shell: pwsh
+    - name: 'Install Azure PowerShell module'
       run: |
         # Check if the Az module is present, if not, install it
         if (-not (Get-Module -ListAvailable -Name Az)) {
           Install-Module -Name Az.Accounts -Scope CurrentUser -Force -AllowClobber
         }
-      working-directory: airepo
-
-    - name: Log in to Azure with Service Principal
       shell: pwsh
-      run: |
-        azd env get-values
       working-directory: airepo
 
-    - name: Update json-values description
+    - name: 'Log in to Azure with Service Principal'
+      run: azd env get-values
+      shell: pwsh
+      working-directory: airepo
+
+    - name: 'Update json-values description'
       uses: restack/update-json-values-action@v1.0.0
       with:
         file: End_to_end_Solutions/AOAISearchDemo/inframain.parameters.json
-        values: "{'paramaters.principalId.vaue': '556689e1-1836-4c15-a7fa-46631fb756d4'}"
-      working-directory: airepo
-      
-    - name: Deploy Application
-      run: |
-        azd up --no-prompt -e new5
+        values: "{'parameters.principalId.value': '556689e1-1836-4c15-a7fa-46631fb756d4'}"
+        workDir: airepo
+
+    - name: 'Deploy Application'
+      run: azd up --no-prompt -e new5
       working-directory: airepo/End_to_end_Solutions/AOAISearchDemo
       env:
         AZURE_ENV_NAME: "new5"
