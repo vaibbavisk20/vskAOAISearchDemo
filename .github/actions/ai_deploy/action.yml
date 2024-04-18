@@ -111,12 +111,6 @@ runs:
             "embeddings.openai_settings.engine": "embedding"
           }
         workDir: airepo
-
-    - name: 'Print bot_config.yaml'
-      run: |
-        Get-Content -Path ./End_to_end_Solutions/AOAISearchDemo/app/backend/bot_config.yaml -TotalCount 1
-      shell: pwsh
-      working-directory: airepo
             
     - name: 'Update azure.yaml to skip Connect-AzAccount step'
       uses: fjogeleit/yaml-update-action@main
@@ -130,6 +124,15 @@ runs:
             "hooks.preprovision.run": "Install-Module AzureAD -Force"
           }
         workDir: airepo
+
+    - name: Install Azure PowerShell module
+      shell: pwsh
+      run: |
+        # Check if the Az module is present, if not, install it
+        if (-not (Get-Module -ListAvailable -Name Az)) {
+          Install-Module -Name Az -Scope CurrentUser -Force -AllowClobber
+        }
+      working-directory: airepo
 
     - name: Log in to Azure with Service Principal
       shell: pwsh
