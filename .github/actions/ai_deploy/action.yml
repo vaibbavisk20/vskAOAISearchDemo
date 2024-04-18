@@ -167,6 +167,7 @@ runs:
       with:
           azPSVersion: "latest"
           inlineScript: |
+            cd airepo/End_to_end_Solutions/AOAISearchDemo
             azd up --no-prompt
       # working-directory: airepo/End_to_end_Solutions/AOAISearchDemo
       env:
