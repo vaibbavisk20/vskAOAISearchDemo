@@ -151,7 +151,7 @@ runs:
       run: |
         $SecurePassword = ConvertTo-SecureString -String 'YPl8Q~Gpddd3wCXk5o.K5~U7UXJiALcoOAHMWa0J' -AsPlainText -Force
         $TenantId = '72f988bf-86f1-41af-91ab-2d7cd011db47'
-        $ApplicationId = '5235f348-ef24-4715-8536-5d98cb76cc8c'
+        $ApplicationId = 'vaibbavis@microsoft.com'
         $Credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $ApplicationId, $SecurePassword
         Connect-AzAccount -ServicePrincipal -TenantId $TenantId -Credential $Credential
 
