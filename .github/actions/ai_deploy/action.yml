@@ -172,9 +172,9 @@ runs:
       
     - name: Deploy Application
       run: |
-        azd env select new5
+        azd env new new5
         azd env set AZURE_PRINCIPAL_ID "556689e1-1836-4c15-a7fa-46631fb756d4"
-        azd up --no-prompt
+        azd up --no-prompt -e new5
       working-directory: airepo/End_to_end_Solutions/AOAISearchDemo
       env:
         AZURE_ENV_NAME: "new5"
