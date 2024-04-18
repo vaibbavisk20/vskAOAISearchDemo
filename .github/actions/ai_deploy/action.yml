@@ -146,7 +146,7 @@ runs:
       with:
         file: End_to_end_Solutions/AOAISearchDemo/inframain.parameters.json
         values: "{'parameters.principalId.value': '556689e1-1836-4c15-a7fa-46631fb756d4'}"
-        workDir: airepo
+      working-directory: airepo
 
     - name: 'Deploy Application'
       run: azd up --no-prompt -e new5
