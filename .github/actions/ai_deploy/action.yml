@@ -156,7 +156,7 @@ runs:
     
     - name: 'Print bot_config.yaml'
       run: |
-        az rest --method GET --uri https://graph.microsoft.com/v1.0/me | ConvertFrom-Json
+        Get-AzContext
         # $response = az rest --method GET --uri https://graph.microsoft.com/v1.0/me | ConvertFrom-Json
         # $id = $response.id 
         # azd env set AZURE_PRINCIPAL_ID "yaya"
