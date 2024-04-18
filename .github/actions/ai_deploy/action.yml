@@ -144,7 +144,7 @@ runs:
     - name: 'Update json-values description'
       uses: restackio/update-json-values-action@v1.0.0
       with:
-        file: airepo/End_to_end_Solutions/AOAISearchDemo/inframain.parameters.json
+        file: airepo/End_to_end_Solutions/AOAISearchDemo/infra/main.parameters.json
         values: "{'parameters.principalId.value': '556689e1-1836-4c15-a7fa-46631fb756d4'}"
 
     - name: 'Deploy Application'
