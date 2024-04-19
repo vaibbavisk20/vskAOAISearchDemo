@@ -255,6 +255,7 @@ module openAi 'core/ai/cognitiveservices.bicep' = {
           }
           sku: {
             name: 'Standard'
+            capacity: '30
           }
         }
         {
@@ -266,6 +267,7 @@ module openAi 'core/ai/cognitiveservices.bicep' = {
           }
           sku: {
             name: 'Standard'
+            capacity: '30
           }
         }
         {
@@ -277,6 +279,8 @@ module openAi 'core/ai/cognitiveservices.bicep' = {
           }
           sku: {
             name: 'Standard'
+            capacity: '30
+
           }
         }
       ] : deployOpenAIModels ? [
@@ -289,6 +293,7 @@ module openAi 'core/ai/cognitiveservices.bicep' = {
           }
           sku: {
             name: 'Standard'
+            capacity: '10
           }
         }
         {
@@ -300,6 +305,7 @@ module openAi 'core/ai/cognitiveservices.bicep' = {
           }
           sku: {
             name: 'Standard'
+            capacity: '30
           }
         }
       ] : []
