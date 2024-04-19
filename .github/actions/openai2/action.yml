@@ -102,7 +102,7 @@ runs:
         azPSVersion: "latest"
         inlineScript: |
           cd AOAISearchDemo
-          Connect-AzAccount -Identity -TenantId '${{ inputs.tenant-id }} -SubscriptionId ${{ inputs.subscription-id }}
+          Connect-AzAccount -Identity -TenantId ${{ inputs.tenant-id }} -SubscriptionId ${{ inputs.subscription-id }}
           azd env new new7
           azd env set AZURE_ENV_NAME "new7"
           azd env set AZURE_LOCATION "eastus"
