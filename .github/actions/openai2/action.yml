@@ -92,19 +92,14 @@ runs:
             "hooks.preprovision.run": "Install-Module AzureAD -Force;Connect-AzAccount -UseDeviceAuthentication;$principalId = (Get-AzADUser -UserPrincipalName (Get-AzContext).Account).Id;azd env set AZURE_PRINCIPAL_ID $principalId"
           }
 
-    - name: 'Log in to Azure with Service Principal'
-      uses: azure/powershell@v1
-      env:
-        secret: ${{ inputs.applicationPassword }}
-        t_id: ${{ inputs.tenant-id }}
-        a_id: ${{ inputs.client-id }}
-      with:
-        azPSVersion: "latest"
-        inlineScript: |
-          cd AOAISearchDemo
-          azd env new new7
-          azd env set AZURE_ENV_NAME "new7"
-          azd env set AZURE_LOCATION "eastus"
-          azd env set AZURE_OPENAI_LOCATION "eastus"
-          azd env set AZURE_SUBSCRIPTION_ID ${{ inputs.subscription-id }}
-          azd up --no-prompt -e new7
+    - name: 'Log in with Azure (Federated Credentials)'
+      run: |
+        Connect-AzAccount -UseDeviceAuthentication
+        azd up --no-prompt -e new7
+      shell: pwsh
+      working-directory: AOAISearchDemo
+      env: 
+        ENV_NAME: "new7"
+        AZURE_LOCATION: "eastus"
+        AZURE_OPENAI_LOCATION: "eastus"
+        AZURE_SUBSCRIPTION_ID: ${{ inputs.subscription-id }}
