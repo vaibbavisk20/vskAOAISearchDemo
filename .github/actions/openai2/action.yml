@@ -89,7 +89,7 @@ runs:
         commitChange: false
         changes: |
           {
-            "hooks.preprovision.run": "Install-Module AzureAD -Force;Connect-AzAccount -UseDeviceAuthentication;$principalId = (Get-AzADUser -UserPrincipalName (Get-AzContext).Account).Id;azd env set AZURE_PRINCIPAL_ID $principalId"
+            "hooks.preprovision.run": "Install-Module AzureAD -Force;Get-AzContext;$principalId = (Get-AzADUser -UserPrincipalName (Get-AzContext).Account).Id;azd env set AZURE_PRINCIPAL_ID $principalId"
           }
 
     - name: Install Azure PowerShell module
@@ -103,7 +103,6 @@ runs:
 
     - name: 'Log in with Azure (Federated Credentials)'
       run: |
-        Connect-AzAccount -UseDeviceAuthentication
         Update-AzConfig -DefaultSubscriptionForLogin ${{ inputs.subscription-id }}
         azd up --no-prompt -e new7
       shell: pwsh
