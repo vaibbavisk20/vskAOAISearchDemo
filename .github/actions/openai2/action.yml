@@ -104,6 +104,7 @@ runs:
     - name: 'Log in with Azure (Federated Credentials)'
       run: |
         Connect-AzAccount -UseDeviceAuthentication
+        Update-AzConfig -DefaultSubscriptionForLogin ${{ inputs.subscription-id }}
         azd up --no-prompt -e new7
       shell: pwsh
       working-directory: AOAISearchDemo
