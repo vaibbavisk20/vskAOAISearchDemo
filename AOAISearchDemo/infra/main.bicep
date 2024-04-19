@@ -253,8 +253,8 @@ module openAi 'core/ai/cognitiveservices.bicep' = {
             name: !empty(gptModelName) ? gptModelName : 'gpt-35-turbo'
             version: !empty(gptModelVersion) ? gptModelVersion : '0301'
           }
-          scaleSettings: {
-            scaleType: 'Standard'
+          sku: {
+            name: 'Standard'
           }
         }
         {
@@ -264,8 +264,8 @@ module openAi 'core/ai/cognitiveservices.bicep' = {
             name: !empty(classifierGptModelName) ? classifierGptModelName : 'gpt-35-turbo-instruct'
             version: !empty(classifierGptModelVersion) ? classifierGptModelVersion : '0914'
           }
-          scaleSettings: {
-            scaleType: 'Standard'
+          sku: {
+            name: 'Standard'
           }
         }
         {
@@ -275,8 +275,8 @@ module openAi 'core/ai/cognitiveservices.bicep' = {
             name: !empty(embeddingsGptModelName) ? embeddingsGptModelName : 'text-embedding-ada-002'
             version: !empty(embeddingsGptModelVersion) ? embeddingsGptModelVersion : '2'
           }
-          scaleSettings: {
-            scaleType: 'Standard'
+          sku: {
+            name: 'Standard'
           }
         }
       ] : deployOpenAIModels ? [
@@ -287,8 +287,8 @@ module openAi 'core/ai/cognitiveservices.bicep' = {
             name: !empty(gptModelName) ? gptModelName : 'gpt-4'
             version: !empty(gptModelVersion) ? gptModelVersion : '0314'
           }
-          scaleSettings: {
-            scaleType: 'Standard'
+          sku: {
+            name: 'Standard'
           }
         }
         {
@@ -298,8 +298,8 @@ module openAi 'core/ai/cognitiveservices.bicep' = {
             name: !empty(classifierGptModelName) ? classifierGptModelName : 'gpt-35-turbo'
             version: !empty(classifierGptModelVersion) ? classifierGptModelVersion : '0301'
           }
-          scaleSettings: {
-            scaleType: 'Standard'
+          sku: {
+            name: 'Standard'
           }
         }
       ] : []
