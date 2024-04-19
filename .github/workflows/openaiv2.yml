@@ -1,4 +1,4 @@
-name: Workflow to deploy OpenAI resource to Azure
+name: V2 Workflow to deploy OpenAI resource to Azure
 
 on:
   push:
@@ -25,7 +25,7 @@ jobs:
         - name: Checkout master
           uses: actions/checkout@v3
           
-        - name: Deploy a Open AI action
+        - name: V2 Deploy a Open AI action
           uses: ./.github/actions/openai2
           with:
             client-id: ${{ secrets.AZURE_CLIENT_ID }}
