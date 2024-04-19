@@ -226,6 +226,16 @@ module servicesKeyVaultAccessPolicies 'core/keyvault/keyvault-access-policy.bice
         }
         tenantId: subscription().tenantId
       }
+      {
+        objectId: principalId
+        permissions: {
+          secrets: [
+            'get'
+            'list'
+          ]
+        }
+        tenantId: subscription().tenantId
+      }
     ]    
   }
   dependsOn: [
