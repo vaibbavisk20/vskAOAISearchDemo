@@ -104,7 +104,7 @@ runs:
         commitChange: false
         changes: |
           {
-            "hooks.preprovision.run": "Install-Module AzureAD -Force;Connect-AzAccount -UseDeviceAuthentication;$principalId = (Get-AzADUser -UserPrincipalName (Get-AzContext).Account).Id;azd env set AZURE_PRINCIPAL_ID $principalId"
+            "hooks.preprovision.run": "Install-Module AzureAD -Force;$principalId = (Get-AzADUser -UserPrincipalName (Get-AzContext).Account).Id;azd env set AZURE_PRINCIPAL_ID $principalId"
           }
         workDir: airepo
 
