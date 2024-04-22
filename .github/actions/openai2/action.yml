@@ -107,6 +107,7 @@ runs:
       with:
         inlineScript: |
           Get-AzContext -ListAvailable
+          azd up --no-prompt -e new7
           # Get-AzUserAssignedIdentity -ResourceGroupName rg-new7 -Name vsk-github-UAMI
           # Connect-AzAccount -Identity
         azPSVersion: "latest"
