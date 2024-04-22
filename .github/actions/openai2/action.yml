@@ -109,6 +109,12 @@ runs:
         Update-AzConfig -DefaultSubscriptionForLogin ${{ inputs.subscription-id }}
         Get-AzUserAssignedIdentity
       working-directory: AOAISearchDemo
+
+    - name: curl
+      shell: pwsh
+      run: |
+        Get-AzUserAssignedIdentity
+      working-directory: AOAISearchDemo
       
     - name: curl
       shell: pwsh
