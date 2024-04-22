@@ -104,7 +104,8 @@ runs:
     - name: curl
       shell: pwsh
       run: |
-         Connect-AzAccount -Identity
+        $identity = Get-AzUserAssignedIdentity -ResourceGroupName ${{ inputs.resource-group-name }} -Name 'githubUserAssignedIdentity'
+        Connect-AzAccount -Identity -AccountId ${{ inputs.client-id }} # Run on the virtual machine
       working-directory: AOAISearchDemo
 
     - name: 'Log in with Azure (Federated Credentials)'
