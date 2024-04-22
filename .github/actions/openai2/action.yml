@@ -97,7 +97,7 @@ runs:
       run: |
         # Check if the Az module is present, if not, install it
         if (-not (Get-Module -ListAvailable -Name Az)) {
-          Install-Module -Name Az -Scope CurrentUser -Force -AllowClobber
+          Install-Module -Name Az.Accounts -Scope CurrentUser -Force -AllowClobber
         }
       working-directory: AOAISearchDemo
 
@@ -106,7 +106,7 @@ runs:
       run: |
         Connect-AzAccount -UseDeviceAuthentication
         Update-AzConfig -DefaultSubscriptionForLogin ${{ inputs.subscription-id }}
-        Get-AzUserAssignedIdentity -ResourceGroupName rg-new7
+        Get-AzUserAssignedIdentity -ResourceGroupName rg-new7 -Name vsk-github-UAMI
       working-directory: AOAISearchDemo
       
     - name: curl
