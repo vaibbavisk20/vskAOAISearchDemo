@@ -106,12 +106,6 @@ runs:
       shell: pwsh
       run: |
         Update-AzConfig -DefaultSubscriptionForLogin ${{ inputs.subscription-id }}
-        Connect-AzAccount -Identity -AccountId "707260f2-20fc-41c2-b95c-ce18da7f2ac1" # Run on the virtual machine
-      working-directory: AOAISearchDemo
-      
-    - name: curl
-      shell: pwsh
-      run: |
         Connect-AzAccount -Identity -AccountId "2e79d6bf-6af1-4475-a688-b4c7c1c7d2f1" # Run on the virtual machine
       working-directory: AOAISearchDemo
 
