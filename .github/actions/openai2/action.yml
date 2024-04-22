@@ -108,7 +108,7 @@ runs:
         inlineScript: |
           Update-AzConfig -DefaultSubscriptionForLogin ${{ inputs.subscription-id }}
           Get-AzUserAssignedIdentity -ResourceGroupName rg-new7 -Name vsk-github-UAMI
-          az identity federated-credential show --name githubUserAssignedIdentity --identity-name vsk-github-UAMI --resource-group rg-new7
+          Get-AzContext
         azPSVersion: "latest"
 
     - name: 'Log in with Azure (Federated Credentials)'
