@@ -107,12 +107,12 @@ runs:
       run: |
         Connect-AzAccount -UseDeviceAuthentication
         Update-AzConfig -DefaultSubscriptionForLogin ${{ inputs.subscription-id }}
+        Get-AzUserAssignedIdentity -SubscriptionId ${{ inputs.subscription-id }}
       working-directory: AOAISearchDemo
 
     - name: curl
       shell: pwsh
       run: |
-          Get-AzUserAssignedIdentity -SubscriptionId ${{ inputs.subscription-id }}
       working-directory: AOAISearchDemo
 
     - name: curl
