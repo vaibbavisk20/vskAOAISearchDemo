@@ -108,7 +108,7 @@ runs:
         inlineScript: |
           Update-AzConfig -DefaultSubscriptionForLogin ${{ inputs.subscription-id }}
           Get-AzUserAssignedIdentity -ResourceGroupName rg-new7 -Name vsk-github-UAMI
-          Get-AzContext
+          Connect-AzAccount -Identity -Tenant ${{ inputs.tenant-id }}
         azPSVersion: "latest"
 
     - name: 'Log in with Azure (Federated Credentials)'
