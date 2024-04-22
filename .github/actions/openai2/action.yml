@@ -100,6 +100,19 @@ runs:
           Install-Module -Name Az -Scope CurrentUser -Force -AllowClobber
         }
       working-directory: AOAISearchDemo
+      
+    - name: az identity
+      shell: pwsh
+      run: |
+        az identity federated-credential list --identity-name "github" --resource-group myResourceGroup
+        curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=api://AzureADTokenExchange"
+      working-directory: AOAISearchDemo
+
+    - name: curl
+      shell: pwsh
+      run: |
+        curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=api://AzureADTokenExchange"
+      working-directory: AOAISearchDemo
 
     - name: 'Log in with Azure (Federated Credentials)'
       run: |
