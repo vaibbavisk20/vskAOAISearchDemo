@@ -106,8 +106,9 @@ runs:
       uses: azure/powershell@v1
       with:
         inlineScript: |
-          Get-AzUserAssignedIdentity -ResourceGroupName rg-new7 -Name vsk-github-UAMI
-          Connect-AzAccount -Identity
+          Get-AzContext -ListAvailable
+          # Get-AzUserAssignedIdentity -ResourceGroupName rg-new7 -Name vsk-github-UAMI
+          # Connect-AzAccount -Identity
         azPSVersion: "latest"
 
     - name: 'Log in with Azure (Federated Credentials)'
