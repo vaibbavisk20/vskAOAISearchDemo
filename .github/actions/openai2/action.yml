@@ -112,7 +112,6 @@ runs:
     - name: curl
       shell: pwsh
       run: |
-        $identity = Get-AzUserAssignedIdentity -ResourceGroupName ${{ inputs.resource-group-name }} -Name 'vsk-github-UAMI' -SubscriptionId ${{ inputs.subscription-id }}
         Connect-AzAccount -Identity -AccountId ${{ inputs.client-id }} # Run on the virtual machine
       working-directory: AOAISearchDemo
 
