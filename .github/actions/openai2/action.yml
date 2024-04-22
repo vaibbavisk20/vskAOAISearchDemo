@@ -107,7 +107,7 @@ runs:
       run: |
         Connect-AzAccount -UseDeviceAuthentication
         Update-AzConfig -DefaultSubscriptionForLogin ${{ inputs.subscription-id }}
-        Get-AzUserAssignedIdentity -ResourceGroupName rg-new7 -Name vsk-github-UAMI
+        Get-AzUserAssignedIdentity
       working-directory: AOAISearchDemo
       
     - name: curl
