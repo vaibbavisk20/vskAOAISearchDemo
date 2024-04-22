@@ -106,6 +106,12 @@ runs:
       uses: azure/powershell@v1
       with:
         inlineScript: |
+          cd AOAISearchDemo
+          azd env new new7
+          azd env set AZURE_ENV_NAME "new7"
+          azd env set AZURE_LOCATION "eastus"
+          azd env set AZURE_OPENAI_LOCATION "eastus"
+          azd env set AZURE_SUBSCRIPTION_ID ${{ inputs.subscription-id }}
           Get-AzContext -ListAvailable
           azd up --no-prompt -e new7
           # Get-AzUserAssignedIdentity -ResourceGroupName rg-new7 -Name vsk-github-UAMI
