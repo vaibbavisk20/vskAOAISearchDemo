@@ -89,7 +89,7 @@ runs:
         commitChange: false
         changes: |
           {
-            "hooks.preprovision.run": "Install-Module AzureAD -Force;Get-AzContext;azd env set AZURE_PRINCIPAL_ID ${{ inputs.prinicpal-id }}"
+            "hooks.preprovision.run": "Install-Module AzureAD -Force;Get-AzContext;azd env set AZURE_PRINCIPAL_ID"+${{ inputs.prinicpal-id }}
           }
 
     # - name: Install Azure PowerShell module
