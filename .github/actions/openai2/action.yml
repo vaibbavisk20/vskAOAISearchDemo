@@ -104,6 +104,7 @@ runs:
     - name: curl
       shell: pwsh
       run: |
+        Connect-AzAcccount -UseDeviceAuthentication
         Update-AzConfig -DefaultSubscriptionForLogin ${{ inputs.subscription-id }}
         Get-AzUserAssignedIdentity -SubscriptionId ${{ inputs.subscription-id }}
       working-directory: AOAISearchDemo
@@ -111,7 +112,6 @@ runs:
     - name: curl
       shell: pwsh
       run: |
-        Update-AzConfig -DefaultSubscriptionForLogin ${{ inputs.subscription-id }}
         $identity = Get-AzUserAssignedIdentity -ResourceGroupName ${{ inputs.resource-group-name }} -Name 'githubUserAssignedIdentity' -SubscriptionId ${{ inputs.subscription-id }}
         Connect-AzAccount -Identity -AccountId ${{ inputs.client-id }} # Run on the virtual machine
       working-directory: AOAISearchDemo
