@@ -89,7 +89,7 @@ runs:
         commitChange: false
         changes: |
           {
-            "hooks.preprovision.run": "Install-Module AzureAD -Force;Get-AzContext;Connect-AzAccount --use-device-authentication;$principalId = (Get-AzADUser -UserPrincipalName (Get-AzContext).Account).Id;azd env set AZURE_PRINCIPAL_ID $principalId"
+            "hooks.preprovision.run": "Install-Module AzureAD -Force;Get-AzContext;Connect-AzAccount -UseDeviceAuthentication;$principalId = (Get-AzADUser -UserPrincipalName (Get-AzContext).Account).Id;azd env set AZURE_PRINCIPAL_ID $principalId"
           }
 
     # - name: Install Azure PowerShell module
