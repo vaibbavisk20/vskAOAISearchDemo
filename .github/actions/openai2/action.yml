@@ -103,12 +103,12 @@ runs:
       working-directory: AOAISearchDemo
       
     - name: Az powershell
-        uses: azure/powershell@v1
-        with:
-          inlineScript: |
-            Update-AzConfig -DefaultSubscriptionForLogin ${{ inputs.subscription-id }}
-            Get-AzUserAssignedIdentity -ResourceGroupName rg-new7 -Name vsk-github-UAMI
-          azPSVersion: "latest"
+      uses: azure/powershell@v1
+      with:
+        inlineScript: |
+          Update-AzConfig -DefaultSubscriptionForLogin ${{ inputs.subscription-id }}
+          Get-AzUserAssignedIdentity -ResourceGroupName rg-new7 -Name vsk-github-UAMI
+        azPSVersion: "latest"
 
     - name: 'Log in with Azure (Federated Credentials)'
       run: |
