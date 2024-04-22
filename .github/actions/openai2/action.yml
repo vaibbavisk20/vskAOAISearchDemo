@@ -104,13 +104,20 @@ runs:
     - name: curl
       shell: pwsh
       run: |
-        $identity = Get-AzUserAssignedIdentity -ResourceGroupName ${{ inputs.resource-group-name }} -Name 'githubUserAssignedIdentity'
+        Update-AzConfig -DefaultSubscriptionForLogin ${{ inputs.subscription-id }}
+        Get-AzUserAssignedIdentity
+      working-directory: AOAISearchDemo
+      
+    - name: curl
+      shell: pwsh
+      run: |
+        Update-AzConfig -DefaultSubscriptionForLogin ${{ inputs.subscription-id }}
+        $identity = Get-AzUserAssignedIdentity -ResourceGroupName ${{ inputs.resource-group-name }} -Name 'githubUserAssignedIdentity' -SubscriptionId ${{ inputs.subscription-id }}
         Connect-AzAccount -Identity -AccountId ${{ inputs.client-id }} # Run on the virtual machine
       working-directory: AOAISearchDemo
 
     - name: 'Log in with Azure (Federated Credentials)'
       run: |
-        Update-AzConfig -DefaultSubscriptionForLogin ${{ inputs.subscription-id }}
         azd up --no-prompt -e new7
       shell: pwsh
       working-directory: AOAISearchDemo
