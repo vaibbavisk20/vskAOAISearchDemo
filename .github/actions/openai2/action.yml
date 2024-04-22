@@ -104,7 +104,7 @@ runs:
     - name: curl
       shell: pwsh
       run: |
-        # az identity federated-credential list --identity-name "newapp422" --resource-group ${{ inputs.resource-group-name }}
+        az identity federated-credential list --identity-name "newapp422" --resource-group ${{ inputs.resource-group-name }}
         # curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=api://AzureADTokenExchange"
       working-directory: AOAISearchDemo
 
