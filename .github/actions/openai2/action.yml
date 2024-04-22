@@ -113,6 +113,13 @@ runs:
       shell: pwsh
       run: |
           Get-AzUserAssignedIdentity -SubscriptionId ${{ inputs.subscription-id }}
+          Get-AzUserAssignedIdentity -ResourceGroupName azure-rg-test -Name uai-pwsh01
+      working-directory: AOAISearchDemo
+
+    - name: curl
+      shell: pwsh
+      run: |
+          Get-AzUserAssignedIdentity -ResourceGroupName ${{ inputs.resource-group-name }} -Name vsk-github-UAMI
       working-directory: AOAISearchDemo
       
     - name: curl
