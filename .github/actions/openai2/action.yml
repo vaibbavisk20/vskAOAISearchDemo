@@ -19,8 +19,8 @@ inputs:
   location:
     description: 'Location to deploy OpenAI resource to'
     required: true
-  applicationPassword:
-    description: 'Client secret for app'
+  principal-id:
+    description: 'FIC Service Principal ID'
     required: false
 
 runs:
