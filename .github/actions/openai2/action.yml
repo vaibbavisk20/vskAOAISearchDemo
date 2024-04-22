@@ -35,7 +35,7 @@ runs:
         client-id: ${{ inputs.client-id }}
         tenant-id: ${{ inputs.tenant-id }}
         subscription-id: ${{ inputs.subscription-id }}
-        enable-AzPSSession: false
+        enable-AzPSSession: true
 
     - name: 'Install azd'
       uses: Azure/setup-azd@v0.1.0
@@ -101,13 +101,14 @@ runs:
           Install-Module -Name Az.ManagedServiceIdentity -Scope CurrentUser -Force -AllowClobber
         }
       working-directory: AOAISearchDemo
-
-    - name: curl
-      shell: pwsh
-      run: |
-        Update-AzConfig -DefaultSubscriptionForLogin ${{ inputs.subscription-id }}
-        Connect-AzAccount -Identity -AccountId "2e79d6bf-6af1-4475-a688-b4c7c1c7d2f1" # Run on the virtual machine
-      working-directory: AOAISearchDemo
+      
+    - name: Az powershell
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            Update-AzConfig -DefaultSubscriptionForLogin ${{ inputs.subscription-id }}
+            Get-AzUserAssignedIdentity -ResourceGroupName rg-new7 -Name vsk-github-UAMI
+          azPSVersion: "latest"
 
     - name: 'Log in with Azure (Federated Credentials)'
       run: |
