@@ -98,6 +98,7 @@ runs:
         # Check if the Az module is present, if not, install it
         if (-not (Get-Module -ListAvailable -Name Az)) {
           Install-Module -Name Az.Accounts -Scope CurrentUser -Force -AllowClobber
+          Install-Module -Name Az.Az.ManagedServiceIdentity -Scope CurrentUser -Force -AllowClobber
         }
       working-directory: AOAISearchDemo
 
