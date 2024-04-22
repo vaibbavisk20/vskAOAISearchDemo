@@ -117,14 +117,3 @@ runs:
           # Get-AzUserAssignedIdentity -ResourceGroupName rg-new7 -Name vsk-github-UAMI
           # Connect-AzAccount -Identity
         azPSVersion: "latest"
-
-    - name: 'Log in with Azure (Federated Credentials)'
-      run: |
-        azd up --no-prompt -e new7
-      shell: pwsh
-      working-directory: AOAISearchDemo
-      env: 
-        ENV_NAME: "new7"
-        AZURE_LOCATION: "eastus"
-        AZURE_OPENAI_LOCATION: "eastus"
-        AZURE_SUBSCRIPTION_ID: ${{ inputs.subscription-id }}
