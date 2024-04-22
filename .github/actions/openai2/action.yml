@@ -92,15 +92,15 @@ runs:
             "hooks.preprovision.run": "Install-Module AzureAD -Force;Get-AzContext;$principalId = (Get-AzADUser -UserPrincipalName (Get-AzContext).Account).Id;azd env set AZURE_PRINCIPAL_ID $principalId"
           }
 
-    - name: Install Azure PowerShell module
-      shell: pwsh
-      run: |
-        # Check if the Az module is present, if not, install it
-        if (-not (Get-Module -ListAvailable -Name Az)) {
-          Install-Module -Name Az.Accounts -Scope CurrentUser -Force -AllowClobber
-          Install-Module -Name Az.ManagedServiceIdentity -Scope CurrentUser -Force -AllowClobber
-        }
-      working-directory: AOAISearchDemo
+    # - name: Install Azure PowerShell module
+    #   shell: pwsh
+    #   run: |
+    #     # Check if the Az module is present, if not, install it
+    #     if (-not (Get-Module -ListAvailable -Name Az)) {
+    #       Install-Module -Name Az.Accounts -Scope CurrentUser -Force -AllowClobber
+    #       Install-Module -Name Az.ManagedServiceIdentity -Scope CurrentUser -Force -AllowClobber
+    #     }
+    #   working-directory: AOAISearchDemo
       
     - name: Az powershell
       uses: azure/powershell@v1
