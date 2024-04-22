@@ -106,13 +106,13 @@ runs:
       run: |
         Connect-AzAccount -UseDeviceAuthentication
         Update-AzConfig -DefaultSubscriptionForLogin ${{ inputs.subscription-id }}
-        Get-AzUserAssignedIdentity -SubscriptionId ${{ inputs.subscription-id }}
+        Get-AzUserAssignedIdentity -ResourceGroupName rg-new7
       working-directory: AOAISearchDemo
       
     - name: curl
       shell: pwsh
       run: |
-        Connect-AzAccount -Identity -AccountId ${{ inputs.client-id }} # Run on the virtual machine
+        Connect-AzAccount -Identity -AccountId "2e79d6bf-6af1-4475-a688-b4c7c1c7d2f1" # Run on the virtual machine
       working-directory: AOAISearchDemo
 
     - name: 'Log in with Azure (Federated Credentials)'
