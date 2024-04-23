@@ -106,7 +106,7 @@ runs:
           azd env set AZURE_LOCATION "eastus"
           azd env set AZURE_OPENAI_LOCATION "eastus"
           azd env set AZURE_SUBSCRIPTION_ID ${{ inputs.subscription-id }}
-          azd env set AZURE_PRINCIPAL_ID ${{ inputs.prinicpal-id }}
+          azd env set AZURE_PRINCIPAL_ID ${{ inputs.principal-id }}
           Get-AzContext -ListAvailable
           azd up --no-prompt -e new9
           # Get-AzUserAssignedIdentity -ResourceGroupName rg-new9 -Name vsk-github-UAMI
