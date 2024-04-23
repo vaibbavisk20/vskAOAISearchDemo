@@ -93,7 +93,8 @@ runs:
           }
 
     - name: Install ODBC Driver for SQL Server v18
-      uses: Yarden-zamir/install-mssql-odbc@main
+      uses: Yarden-zamir/install-mssql-odbc@v1.0.2
+
     
     - name: Az powershell
       uses: azure/powershell@v1
