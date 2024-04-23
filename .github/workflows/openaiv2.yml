@@ -32,5 +32,5 @@ jobs:
             tenant-id: ${{ secrets.AZURE_TENANT_ID }}
             subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
             resource-group-name: ${{ vars.AZURE_RG }}
-            principal-id: ${{ secrets.AZURE_PRINCIPAL_ID }}
+            principal-id: ${{ secrets.AZURE_APP_ID }}
             location: 'eastus'

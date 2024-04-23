@@ -30,7 +30,7 @@ runs:
       uses: actions/checkout@v3
 
     - name: 'az cli login'
-      uses: azure/login@v1
+      uses: azure/login@v2.1.0
       with:
         client-id: ${{ inputs.client-id }}
         tenant-id: ${{ inputs.tenant-id }}
@@ -89,7 +89,7 @@ runs:
         commitChange: false
         changes: |
           {
-            "hooks.preprovision.run": "Install-Module AzureAD -Force;Get-AzContext;azd env set AZURE_PRINCIPAL_ID cf07d11e-4bd8-4597-8b22-ffc48a40012b"
+            "hooks.preprovision.run": "Install-Module AzureAD -Force;Get-AzContext"
           }
 
     - name: Install ODBC Driver for SQL Server v18
