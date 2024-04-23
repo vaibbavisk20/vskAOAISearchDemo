@@ -638,7 +638,7 @@ module azureOpenAIEmbeddingsEngineName 'core/keyvault/keyvault-secret.bicep' = {
   params: {
     keyVaultName: keyVault.outputs.name
     secretName: 'AZURE-OPENAI-EMBEDDINGS-ENGINE-NAME'
-    secretValue: !empty(embeddingsGptDeploymentName) ? embeddingsGptDeploymentName : 'text-embedding-ada-002'
+    secretValue: embeddingsGptDeploymentName ? embeddingsGptDeploymentName : 'text-embedding-ada-002'
   }
   dependsOn: [
     keyVault
@@ -652,7 +652,7 @@ module azureOpenAIEmbeddingsDimensions 'core/keyvault/keyvault-secret.bicep' = {
   params: {
     keyVaultName: keyVault.outputs.name
     secretName: 'AZURE-OPENAI-EMBEDDINGS-DIMENSIONS'
-    secretValue: embeddingsDimensions
+    secretValue: embeddingsDimensions ? embeddingsDimensions : 1536
   }
   dependsOn: [
     keyVault
@@ -665,7 +665,7 @@ module azureOpenAIEmbeddingsTokenLimit 'core/keyvault/keyvault-secret.bicep' = {
   params: {
     keyVaultName: keyVault.outputs.name
     secretName: 'AZURE-OPENAI-EMBEDDINGS-TOKEN-LIMIT'
-    secretValue: embeddingsTokenLimit
+    secretValue: embeddingsTokenLimit ? embeddingsTokenLimit : 8191
   }
   dependsOn: [
     keyVault
