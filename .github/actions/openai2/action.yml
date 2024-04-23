@@ -102,12 +102,12 @@ runs:
         inlineScript: |
           cd AOAISearchDemo
           Install-Module -Name Az -Force
-          azd env new new14
-          azd env set AZURE_ENV_NAME "new14"
+          azd env new new15
+          azd env set AZURE_ENV_NAME "new15"
           azd env set AZURE_LOCATION "eastus"
           azd env set AZURE_OPENAI_LOCATION "eastus"
           azd env set AZURE_SUBSCRIPTION_ID ${{ inputs.subscription-id }}
           azd env set AZURE_PRINCIPAL_ID ${{ inputs.principal-id }}
           Get-AzContext -ListAvailable
-          # azd up --no-prompt -e new14
+          azd up --no-prompt -e new15
         azPSVersion: "latest"
