@@ -102,6 +102,7 @@ runs:
         inlineScript: |
           cd AOAISearchDemo
           Install-Module -Name Az -Force
+          $PSVersionTable
           azd env new new16
           azd env set AZURE_ENV_NAME "new16"
           azd env set AZURE_LOCATION "eastus"
