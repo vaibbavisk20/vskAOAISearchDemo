@@ -101,14 +101,12 @@ runs:
       with:
         inlineScript: |
           cd AOAISearchDemo
-          azd env new new10
-          azd env set AZURE_ENV_NAME "new10"
+          azd env new new11
+          azd env set AZURE_ENV_NAME "new11"
           azd env set AZURE_LOCATION "eastus"
           azd env set AZURE_OPENAI_LOCATION "eastus"
           azd env set AZURE_SUBSCRIPTION_ID ${{ inputs.subscription-id }}
           azd env set AZURE_PRINCIPAL_ID ${{ inputs.principal-id }}
           Get-AzContext -ListAvailable
-          azd up --no-prompt -e new10
-          # Get-AzUserAssignedIdentity -ResourceGroupName rg-new10 -Name vsk-github-UAMI
-          # Connect-AzAccount -Identity
+          azd up --no-prompt -e new11
         azPSVersion: "latest"
