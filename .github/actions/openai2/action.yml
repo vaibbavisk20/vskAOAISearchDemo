@@ -101,7 +101,7 @@ runs:
       with:
         inlineScript: |
           cd AOAISearchDemo
-          Update-PSResource Az
+          Install-Module -Name Az
           azd env new new14
           azd env set AZURE_ENV_NAME "new14"
           azd env set AZURE_LOCATION "eastus"
