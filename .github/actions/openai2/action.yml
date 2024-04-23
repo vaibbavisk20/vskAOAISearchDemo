@@ -97,16 +97,16 @@ runs:
 
     
     - name: Az powershell
-      uses: azure/powershell@v1
+      uses: azure/powershell@v2
       with:
         inlineScript: |
           cd AOAISearchDemo
-          azd env new new11
-          azd env set AZURE_ENV_NAME "new11"
+          azd env new new12
+          azd env set AZURE_ENV_NAME "new12"
           azd env set AZURE_LOCATION "eastus"
           azd env set AZURE_OPENAI_LOCATION "eastus"
           azd env set AZURE_SUBSCRIPTION_ID ${{ inputs.subscription-id }}
           azd env set AZURE_PRINCIPAL_ID ${{ inputs.principal-id }}
           Get-AzContext -ListAvailable
-          azd up --no-prompt -e new11
+          azd up --no-prompt -e new12
         azPSVersion: "latest"
