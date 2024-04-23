@@ -101,7 +101,7 @@ runs:
       with:
         inlineScript: |
           cd AOAISearchDemo
-          Install-Module -Name Az -Force
+          Install-Module -Name Az -Force -RequiredVersion 11.5.0
           $PSVersionTable
           azd env new new16
           azd env set AZURE_ENV_NAME "new16"
@@ -111,4 +111,4 @@ runs:
           azd env set AZURE_PRINCIPAL_ID ${{ inputs.principal-id }}
           Get-AzContext -ListAvailable
           azd up --no-prompt -e new16
-        azPSVersion: "latest"
+        azPSVersion: "9.2"
