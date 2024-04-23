@@ -42,8 +42,8 @@ param embeddingsGptDeploymentName string = ''
 param embeddingsGptModelName string = ''
 param embeddingsGptModelVersion string = ''
 param embeddingsApiVersion string = '2023-03-15-preview'
-param embeddingsTokenLimit string = '8191'
-param embeddingsDimensions string = '1536'
+param embeddingsTokenLimit string = ''
+param embeddingsDimensions string = ''
 
 param cosmosAccountName string = ''
 param cosmosDatabaseName string = 'aoai-search-demo-cosmos-db'
@@ -652,7 +652,7 @@ module azureOpenAIEmbeddingsDimensions 'core/keyvault/keyvault-secret.bicep' = {
   params: {
     keyVaultName: keyVault.outputs.name
     secretName: 'AZURE-OPENAI-EMBEDDINGS-DIMENSIONS'
-    secretValue: embeddingsDimensions
+    secretValue: !empty(embeddingsDimensions) ? embeddingsDimensions : '1536'
   }
   dependsOn: [
     keyVault
@@ -665,7 +665,7 @@ module azureOpenAIEmbeddingsTokenLimit 'core/keyvault/keyvault-secret.bicep' = {
   params: {
     keyVaultName: keyVault.outputs.name
     secretName: 'AZURE-OPENAI-EMBEDDINGS-TOKEN-LIMIT'
-    secretValue: embeddingsTokenLimit
+    secretValue: !empty(embeddingsTokenLimit) ? embeddingsTokenLimit : '8191'
   }
   dependsOn: [
     keyVault
