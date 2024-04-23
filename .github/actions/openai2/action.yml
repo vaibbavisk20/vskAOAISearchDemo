@@ -89,7 +89,7 @@ runs:
         commitChange: false
         changes: |
           {
-            "hooks.preprovision.run": "Install-Module AzureAD -Force;Get-AzContext"
+            "hooks.preprovision.run": "Install-Module AzureAD -Force;Get-AzContext; azd env set AZURE_PRINCIPAL_ID 4d94dbeb-4a0b-441f-b183-aa77361917fe"
           }
 
     - name: Install ODBC Driver for SQL Server v18
@@ -102,12 +102,12 @@ runs:
         inlineScript: |
           cd AOAISearchDemo
           Install-Module -Name Az -Force
-          azd env new new15
-          azd env set AZURE_ENV_NAME "new15"
+          azd env new new16
+          azd env set AZURE_ENV_NAME "new16"
           azd env set AZURE_LOCATION "eastus"
           azd env set AZURE_OPENAI_LOCATION "eastus"
           azd env set AZURE_SUBSCRIPTION_ID ${{ inputs.subscription-id }}
           azd env set AZURE_PRINCIPAL_ID ${{ inputs.principal-id }}
           Get-AzContext -ListAvailable
-          azd up --no-prompt -e new15
+          azd up --no-prompt -e new16
         azPSVersion: "latest"
