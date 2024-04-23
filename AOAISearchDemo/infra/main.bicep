@@ -638,7 +638,7 @@ module azureOpenAIEmbeddingsEngineName 'core/keyvault/keyvault-secret.bicep' = {
   params: {
     keyVaultName: keyVault.outputs.name
     secretName: 'AZURE-OPENAI-EMBEDDINGS-ENGINE-NAME'
-    secretValue: embeddingsGptDeploymentName ? embeddingsGptDeploymentName : 'text-embedding-ada-002'
+    secretValue: embeddingsGptDeploymentName
   }
   dependsOn: [
     keyVault
