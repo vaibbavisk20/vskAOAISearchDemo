@@ -72,13 +72,13 @@ runs:
         commitChange: false
         changes: |
           {
-            "approach_classifier.openai_settings.engine": "gpt-35-turbo-instruct",
-            "structured_query_nl_to_sql.openai_settings.engine": "gpt-35-turbo",
-            "structured_query_nl_to_sql.model_params.model_name": "gpt-35-turbo",
-            "structured_final_answer_generation.openai_settings.engine": "gpt-35-turbo",
-            "unstructured_search_query_generation.openai_settings.engine": "gpt-35-turbo",
-            "unstructured_final_answer_generation.openai_settings.engine": "gpt-35-turbo",
-            "unstructured_final_answer_generation.model_params.model_name": "gpt-35-turbo",
+            "approach_classifier.openai_settings.engine": "gpt-35-turbo",
+            "structured_query_nl_to_sql.openai_settings.engine": "gpt-4",
+            "structured_query_nl_to_sql.model_params.model_name": "gpt-4",
+            "structured_final_answer_generation.openai_settings.engine": "gpt-4",
+            "unstructured_search_query_generation.openai_settings.engine": "gpt-4",
+            "unstructured_final_answer_generation.openai_settings.engine": "gpt-4",
+            "unstructured_final_answer_generation.model_params.model_name": "gpt-4",
             "embeddings.openai_settings.engine": "text-embedding-ada-002"
           }
 
