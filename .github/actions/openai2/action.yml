@@ -92,16 +92,13 @@ runs:
             "hooks.preprovision.run": "Install-Module AzureAD -Force;Get-AzContext;"
           }
 
-    # - name: Install Azure PowerShell module
-    #   shell: pwsh
-    #   run: |
-    #     # Check if the Az module is present, if not, install it
-    #     if (-not (Get-Module -ListAvailable -Name Az)) {
-    #       Install-Module -Name Az.Accounts -Scope CurrentUser -Force -AllowClobber
-    #       Install-Module -Name Az.ManagedServiceIdentity -Scope CurrentUser -Force -AllowClobber
-    #     }
-    #   working-directory: AOAISearchDemo
-      
+    - name: Install ODBC Driver for SQL Server v18
+      uses: Yarden-zamir/install-mssql-odbc@main
+        with:
+          ODBC_VERSION: 18
+          DISTRO: Alpine
+          DOCS_URL: https://yarden-zamir.com/alternate-docs-path.md
+          REMOVE_EXITS: true
     - name: Az powershell
       uses: azure/powershell@v1
       with:
