@@ -257,11 +257,11 @@ module openAi 'core/ai/cognitiveservices.bicep' = {
     }
     deployments: deployOpenAIModels && !searchSkipVectorization ? [
         {
-          name: !empty(gptDeploymentName) ? gptDeploymentName : 'gpt-4'
+          name: !empty(gptDeploymentName) ? gptDeploymentName : 'gpt-35-turbo'
           model: {
             format: 'OpenAI'
-            name: !empty(gptModelName) ? gptModelName : 'gpt-4'
-            version: !empty(gptModelVersion) ? gptModelVersion : '0314'
+            name: !empty(gptModelName) ? gptModelName : 'gpt-35-turbo'
+            version: !empty(gptModelVersion) ? gptModelVersion : '0301'
           }
           sku: {
             name: 'Standard'
@@ -294,11 +294,11 @@ module openAi 'core/ai/cognitiveservices.bicep' = {
         }
       ] : deployOpenAIModels ? [
         {
-          name: !empty(gptDeploymentName) ? gptDeploymentName : 'gpt-4'
+          name: !empty(gptDeploymentName) ? gptDeploymentName : 'gpt-35-turbo'
           model: {
             format: 'OpenAI'
-            name: !empty(gptModelName) ? gptModelName : 'gpt-4'
-            version: !empty(gptModelVersion) ? gptModelVersion : '0314'
+            name: !empty(gptModelName) ? gptModelName : 'gpt-35-turbo'
+            version: !empty(gptModelVersion) ? gptModelVersion : '0301'
           }
           sku: {
             name: 'Standard'
