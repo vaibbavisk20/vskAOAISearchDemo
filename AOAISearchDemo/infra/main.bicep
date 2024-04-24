@@ -651,7 +651,7 @@ module azureOpenAIEmbeddingsDimensions 'core/keyvault/keyvault-secret.bicep' = {
   params: {
     keyVaultName: keyVault.outputs.name
     secretName: 'AZURE-OPENAI-EMBEDDINGS-DIMENSIONS'
-    secretValue: !empty(embeddingsDimensions) ? embeddingsDimensions : '1536
+    secretValue: !empty(embeddingsDimensions) ? embeddingsDimensions : '1536'
   }
   dependsOn: [
     keyVault
