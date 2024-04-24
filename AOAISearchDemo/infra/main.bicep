@@ -257,11 +257,11 @@ module openAi 'core/ai/cognitiveservices.bicep' = {
     }
     deployments: deployOpenAIModels && !searchSkipVectorization ? [
         {
-          name: !empty(gptDeploymentName) ? gptDeploymentName : 'chat'
+          name: !empty(gptDeploymentName) ? gptDeploymentName : 'gpt-4'
           model: {
             format: 'OpenAI'
-            name: !empty(gptModelName) ? gptModelName : 'gpt-35-turbo'
-            version: !empty(gptModelVersion) ? gptModelVersion : '0301'
+            name: !empty(gptModelName) ? gptModelName : 'gpt-4'
+            version: !empty(gptModelVersion) ? gptModelVersion : '0125-Preview'
           }
           sku: {
             name: 'Standard'
@@ -269,7 +269,7 @@ module openAi 'core/ai/cognitiveservices.bicep' = {
           }
         }
         {
-          name: !empty(classifierGptDeploymentName) ? classifierGptDeploymentName : 'completions'
+          name: !empty(classifierGptDeploymentName) ? classifierGptDeploymentName : 'gpt-35-turbo'
           model: {
             format: 'OpenAI'
             name: !empty(classifierGptModelName) ? classifierGptModelName : 'gpt-35-turbo'
@@ -294,11 +294,11 @@ module openAi 'core/ai/cognitiveservices.bicep' = {
         }
       ] : deployOpenAIModels ? [
         {
-          name: !empty(gptDeploymentName) ? gptDeploymentName : 'chat'
+          name: !empty(gptDeploymentName) ? gptDeploymentName : 'gpt-4'
           model: {
             format: 'OpenAI'
-            name: !empty(gptModelName) ? gptModelName : 'gpt-35-turbo'
-            version: !empty(gptModelVersion) ? gptModelVersion : '0301'
+            name: !empty(gptModelName) ? gptModelName : 'gpt-4'
+            version: !empty(gptModelVersion) ? gptModelVersion : '0125-Preview'
           }
           sku: {
             name: 'Standard'
@@ -306,7 +306,7 @@ module openAi 'core/ai/cognitiveservices.bicep' = {
           }
         }
         {
-          name: !empty(classifierGptDeploymentName) ? classifierGptDeploymentName : 'completions'
+          name: !empty(classifierGptDeploymentName) ? classifierGptDeploymentName : 'gpt-35-turbo'
           model: {
             format: 'OpenAI'
             name: !empty(classifierGptModelName) ? classifierGptModelName : 'gpt-35-turbo'
