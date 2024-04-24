@@ -257,7 +257,7 @@ module openAi 'core/ai/cognitiveservices.bicep' = {
     }
     deployments: deployOpenAIModels && !searchSkipVectorization ? [
         {
-          name: !empty(gptDeploymentName) ? gptDeploymentName : 'gpt-35-turbo'
+          name: !empty(gptDeploymentName) ? gptDeploymentName : 'chat'
           model: {
             format: 'OpenAI'
             name: !empty(gptModelName) ? gptModelName : 'gpt-35-turbo'
@@ -269,7 +269,7 @@ module openAi 'core/ai/cognitiveservices.bicep' = {
           }
         }
         {
-          name: !empty(classifierGptDeploymentName) ? classifierGptDeploymentName : 'gpt-35-turbo'
+          name: !empty(classifierGptDeploymentName) ? classifierGptDeploymentName : 'completions'
           model: {
             format: 'OpenAI'
             name: !empty(classifierGptModelName) ? classifierGptModelName : 'gpt-35-turbo'
@@ -294,7 +294,7 @@ module openAi 'core/ai/cognitiveservices.bicep' = {
         }
       ] : deployOpenAIModels ? [
         {
-          name: !empty(gptDeploymentName) ? gptDeploymentName : 'gpt-35-turbo'
+          name: !empty(gptDeploymentName) ? gptDeploymentName : 'chat'
           model: {
             format: 'OpenAI'
             name: !empty(gptModelName) ? gptModelName : 'gpt-35-turbo'
@@ -306,7 +306,7 @@ module openAi 'core/ai/cognitiveservices.bicep' = {
           }
         }
         {
-          name: !empty(classifierGptDeploymentName) ? classifierGptDeploymentName : 'gpt-35-turbo'
+          name: !empty(classifierGptDeploymentName) ? classifierGptDeploymentName : 'completions'
           model: {
             format: 'OpenAI'
             name: !empty(classifierGptModelName) ? classifierGptModelName : 'gpt-35-turbo'
