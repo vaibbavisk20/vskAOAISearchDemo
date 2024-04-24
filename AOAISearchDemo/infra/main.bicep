@@ -257,7 +257,7 @@ module openAi 'core/ai/cognitiveservices.bicep' = {
     }
     deployments: deployOpenAIModels && !searchSkipVectorization ? [
         {
-          name: !empty(gptDeploymentName) ? gptDeploymentName : 'gpt-4'
+          name: !empty(gptDeploymentName) ? gptDeploymentName : 'chat'
           model: {
             format: 'OpenAI'
             name: !empty(gptModelName) ? gptModelName : 'gpt-4'
@@ -269,7 +269,7 @@ module openAi 'core/ai/cognitiveservices.bicep' = {
           }
         }
         {
-          name: !empty(classifierGptDeploymentName) ? classifierGptDeploymentName : 'gpt-35-turbo'
+          name: !empty(classifierGptDeploymentName) ? classifierGptDeploymentName : 'classifier'
           model: {
             format: 'OpenAI'
             name: !empty(classifierGptModelName) ? classifierGptModelName : 'gpt-35-turbo'
@@ -281,7 +281,7 @@ module openAi 'core/ai/cognitiveservices.bicep' = {
           }
         }
         {
-          name: !empty(embeddingsGptDeploymentName) ? embeddingsGptDeploymentName : 'text-embedding-ada-002'
+          name: !empty(embeddingsGptDeploymentName) ? embeddingsGptDeploymentName : 'embeddings'
           model: {
             format: 'OpenAI'
             name: !empty(embeddingsGptModelName) ? embeddingsGptModelName : 'text-embedding-ada-002'
@@ -294,7 +294,7 @@ module openAi 'core/ai/cognitiveservices.bicep' = {
         }
       ] : deployOpenAIModels ? [
         {
-          name: !empty(gptDeploymentName) ? gptDeploymentName : 'gpt-4'
+          name: !empty(gptDeploymentName) ? gptDeploymentName : 'chat'
           model: {
             format: 'OpenAI'
             name: !empty(gptModelName) ? gptModelName : 'gpt-4'
@@ -306,7 +306,7 @@ module openAi 'core/ai/cognitiveservices.bicep' = {
           }
         }
         {
-          name: !empty(classifierGptDeploymentName) ? classifierGptDeploymentName : 'gpt-35-turbo'
+          name: !empty(classifierGptDeploymentName) ? classifierGptDeploymentName : 'classifier'
           model: {
             format: 'OpenAI'
             name: !empty(classifierGptModelName) ? classifierGptModelName : 'gpt-35-turbo'
@@ -637,7 +637,7 @@ module azureOpenAIEmbeddingsEngineName 'core/keyvault/keyvault-secret.bicep' = {
   params: {
     keyVaultName: keyVault.outputs.name
     secretName: 'AZURE-OPENAI-EMBEDDINGS-ENGINE-NAME'
-    secretValue: !empty(embeddingsGptDeploymentName) ? embeddingsGptDeploymentName : 'text-embedding-ada-002'
+    secretValue: !empty(embeddingsGptDeploymentName) ? embeddingsGptDeploymentName : 'embeddings'
   }
   dependsOn: [
     keyVault

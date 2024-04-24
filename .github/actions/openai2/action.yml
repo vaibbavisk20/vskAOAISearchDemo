@@ -64,14 +64,14 @@ runs:
         commitChange: false
         changes: |
           {
-            "approach_classifier.openai_settings.engine": "completions",
+            "approach_classifier.openai_settings.engine": "classifier",
             "structured_query_nl_to_sql.openai_settings.engine": "chat",
-            "structured_query_nl_to_sql.model_params.model_name": "gpt-35-turbo",
+            "structured_query_nl_to_sql.model_params.model_name": "gpt-4",
             "structured_final_answer_generation.openai_settings.engine": "chat",
             "unstructured_search_query_generation.openai_settings.engine": "chat",
             "unstructured_final_answer_generation.openai_settings.engine": "chat",
-            "unstructured_final_answer_generation.model_params.model_name": "gpt-35-turbo",
-            "embeddings.openai_settings.engine": "text-embedding-ada-002"
+            "unstructured_final_answer_generation.model_params.model_name": "gpt-4",
+            "embeddings.openai_settings.engine": "embeddings"
           }
 
     - name: 'Update azure.yaml to skip Connect-AzAccount step'
@@ -96,12 +96,12 @@ runs:
           cd AOAISearchDemo
           Install-Module -Name Az -Force -RequiredVersion 11.5.0
           $PSVersionTable
-          azd env new vsknew3
-          azd env set AZURE_ENV_NAME "vsknew3"
+          azd env new vsknew4
+          azd env set AZURE_ENV_NAME "vsknew4"
           azd env set AZURE_LOCATION "eastus"
           azd env set AZURE_OPENAI_LOCATION "southcentralus"
           azd env set AZURE_SUBSCRIPTION_ID ${{ inputs.subscription-id }}
           azd env set AZURE_PRINCIPAL_ID ${{ inputs.principal-id }}
           Get-AzContext -ListAvailable
-          azd up --no-prompt -e vsknew3
+          azd up --no-prompt -e vsknew4
         azPSVersion: "9.2"
