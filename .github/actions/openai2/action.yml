@@ -57,14 +57,6 @@ runs:
       run: dir
       shell: pwsh
 
-    - name: 'Log in with Azure (Federated Credentials)'
-      run: |
-        azd auth login `
-          --client-id ${{ inputs.client-id }} `
-          --federated-credential-provider "github" `
-          --tenant-id ${{ inputs.tenant-id }}
-      shell: pwsh
-
     - name: 'Update bot_config.yaml'
       uses: fjogeleit/yaml-update-action@main
       with:
@@ -100,6 +92,7 @@ runs:
       uses: azure/powershell@v2
       with:
         inlineScript: |
+          azd auth login --client-id ${{ inputs.client-id }} --federated-credential-provider "github" --tenant-id ${{ inputs.tenant-id }}
           cd AOAISearchDemo
           Install-Module -Name Az -Force -RequiredVersion 11.5.0
           $PSVersionTable
