@@ -42,7 +42,7 @@ runs:
       with:
         azcliversion: 2.58.0
         inlineScript: |
-          az account get-access-token --scope https://vault.azure.net/.default --output none
+          az account get-access-token --scope https://vault.azure.net/.default
           
     - name: Fetch OID token every 4 mins
       shell: bash
