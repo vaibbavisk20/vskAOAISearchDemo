@@ -37,6 +37,13 @@ runs:
         subscription-id: ${{ inputs.subscription-id }}
         enable-AzPSSession: true
 
+    - name: Azure CLI script
+      uses: azure/cli@v2
+      with:
+        azcliversion: 2.58.0
+        inlineScript: |
+          az account get-access-token --scope https://vault.azure.net/.default --output none
+          
     - name: 'Install azd'
       uses: Azure/setup-azd@v0.1.0
 
@@ -96,12 +103,12 @@ runs:
           cd AOAISearchDemo
           Install-Module -Name Az -Force -RequiredVersion 11.5.0
           $PSVersionTable
-          azd env new vsknew4
-          azd env set AZURE_ENV_NAME "vsknew4"
+          azd env new vsknew5
+          azd env set AZURE_ENV_NAME "vsknew5"
           azd env set AZURE_LOCATION "eastus"
           azd env set AZURE_OPENAI_LOCATION "southcentralus"
           azd env set AZURE_SUBSCRIPTION_ID ${{ inputs.subscription-id }}
           azd env set AZURE_PRINCIPAL_ID ${{ inputs.principal-id }}
           Get-AzContext -ListAvailable
-          azd up --no-prompt -e vsknew4
-        azPSVersion: "9.2"
+          azd up --no-prompt -e vsknew5
+        azPSVersion: "latest"
