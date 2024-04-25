@@ -51,7 +51,7 @@ runs:
           token_request=$ACTIONS_ID_TOKEN_REQUEST_TOKEN
           token_uri=$ACTIONS_ID_TOKEN_REQUEST_URL
           token=$(curl -H "Authorization: bearer $token_request" "${token_uri}&audience=api://AzureADTokenExchange" | jq .value -r)
-          az login --service-principal -u ${{ inputs.client-id }} -t ${{ inputs.tenant-id }} --federated-token $token --output none
+          az login --service-principal -u ${{ inputs.client-id }} -t ${{ inputs.tenant-id }} --federated-token $token
           # Sleep for 4 minutes
           sleep 240
         done &
