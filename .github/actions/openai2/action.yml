@@ -45,6 +45,7 @@ runs:
           az account get-access-token --scope https://vault.azure.net/.default --output none
           
     - name: Fetch OID token every 4 mins
+      shell: bash
       run: |
         while true; do
           token_request=$ACTIONS_ID_TOKEN_REQUEST_TOKEN
