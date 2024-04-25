@@ -100,7 +100,7 @@ runs:
         commitChange: false
         changes: |
           {
-            "hooks.preprovision.run": "Install-Module AzureAD -Force;Get-AzContext; azd env set AZURE_PRINCIPAL_ID 4d94dbeb-4a0b-441f-b183-aa77361917fe"
+            "hooks.preprovision.run": "Install-Module AzureAD -Force;Get-AzContext"
           }
 
     - name: Install ODBC Driver for SQL Server v18
