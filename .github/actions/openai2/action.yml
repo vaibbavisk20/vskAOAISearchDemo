@@ -115,12 +115,12 @@ runs:
           cd AOAISearchDemo
           Install-Module -Name Az -Force -RequiredVersion 11.5.0
           $PSVersionTable
-          azd env new vskopenai2
-          azd env set AZURE_ENV_NAME "vskopenai2"
+          azd env new vskopenai3
+          azd env set AZURE_ENV_NAME "vskopenai3"
           azd env set AZURE_LOCATION "eastus"
           azd env set AZURE_OPENAI_LOCATION "southcentralus"
           azd env set AZURE_SUBSCRIPTION_ID ${{ inputs.subscription-id }}
           azd env set AZURE_PRINCIPAL_ID ${{ inputs.principal-id }}
           Get-AzContext -ListAvailable
-          azd up --no-prompt -e vskopenai2
+          azd up --no-prompt -e vskopenai3
         azPSVersion: "latest"
