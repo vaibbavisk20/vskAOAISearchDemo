@@ -30,19 +30,19 @@ runs:
       uses: actions/checkout@v3
 
     - name: 'az cli login'
-      uses: azure/login@v1
+      uses: azure/login@v2
       with:
         client-id: ${{ inputs.client-id }}
         tenant-id: ${{ inputs.tenant-id }}
         subscription-id: ${{ inputs.subscription-id }}
         enable-AzPSSession: true
 
-    - name: Azure CLI script
-      uses: azure/cli@v2
-      with:
-        azcliversion: 2.58.0
-        inlineScript: |
-          az account get-access-token --scope https://vault.azure.net/.default
+    # - name: Azure CLI script
+    #   uses: azure/cli@v2
+    #   with:
+    #     azcliversion: 2.58.0
+    #     inlineScript: |
+    #       az account get-access-token --scope https://vault.azure.net/.default
           
     # - name: Fetch OID token every 4 mins
     #   shell: bash
