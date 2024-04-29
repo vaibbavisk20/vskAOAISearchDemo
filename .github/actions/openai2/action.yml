@@ -115,7 +115,8 @@ runs:
           cd AOAISearchDemo
           Install-Module -Name Az -Force -RequiredVersion 11.5.0
           $PSVersionTable
-          azd env new vskopenai3
+          azd env new vsk429
+          Get-AzAccessToken -ResourceUrl https://vault.azure.net
           azd env set AZURE_ENV_NAME "vskopenai3"
           azd env set AZURE_LOCATION "eastus"
           azd env set AZURE_OPENAI_LOCATION "southcentralus"
