@@ -1,4 +1,4 @@
-# Action to deploy AZD template for End_to_end_Solutions/AOAISearchDemo
+# Azure Infrastructure for Open AI powered Chat
 
 ## Overview
 
