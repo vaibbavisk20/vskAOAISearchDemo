@@ -29,6 +29,14 @@ resource sqlServer 'Microsoft.Sql/servers@2022-08-01-preview' = {
   }
 }
 
+resource sqlEntraIDAuth 'Microsoft.Sql/servers/azureADOnlyAuthentications@2022-08-01-preview' = {
+  name: 'sql-entra-id-auth'
+  parent: sqlServer
+  properties: {
+    azureADOnlyAuthentication: true
+  }
+}
+
 resource sqlDatabase 'Microsoft.Sql/servers/databases@2022-08-01-preview' = {
   parent: sqlServer
   name: sqlDatabaseName
