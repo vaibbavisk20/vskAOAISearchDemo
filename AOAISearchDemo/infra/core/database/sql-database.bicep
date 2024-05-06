@@ -1,8 +1,4 @@
 param sqlServerName string
-param sqlAdminLogin string = 'azureuser'
-
-@secure()
-param sqlAdminPassword string = newGuid()
 
 param sqlDatabaseName string
 param databaseCollation string = 'SQL_Latin1_General_CP1_CI_AS'
@@ -16,24 +12,25 @@ param keyVaultName string = ''
 @description('Key Vault ID')
 param addKeysToVault bool = false
 
+param principal_id string
+param tenant_id string
+
 resource sqlServer 'Microsoft.Sql/servers@2022-08-01-preview' = {
   name: sqlServerName
   location: location
   tags: tags
   properties: {
-    administratorLogin: sqlAdminLogin
-    administratorLoginPassword: sqlAdminPassword
     version: '12.0'
     minimalTlsVersion: '1.2'
     publicNetworkAccess: 'Enabled'
-  }
-}
-
-resource sqlEntraIDAuth 'Microsoft.Sql/servers/azureADOnlyAuthentications@2022-08-01-preview' = {
-  name: 'Default'
-  parent: sqlServer
-  properties: {
-    azureADOnlyAuthentication: true
+    administrators: {
+      administratorType: 'ActiveDirectory'
+      login: 'vsk-newapp-56'
+      sid: principal_id
+      tenantId: tenant_id
+      principalType: 'Application'
+      azureADOnlyAuthentication: true
+    }
   }
 }
 
@@ -56,9 +53,8 @@ module sqlConnectionStringSecret '../keyvault/keyvault-secret.bicep' = if(addKey
      'Server=tcp:',
      sqlServer.properties.fullyQualifiedDomainName, 
      ',1433;Database=', sqlDatabaseName, 
-     ';UiD=', sqlAdminLogin, 
-     ';Pwd=', sqlAdminPassword, 
-     ';Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;')
+     ';UiD=', 'vsk-newapp-56', 
+     ';Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;Authentication=ActiveDirectoryIntegrated')
   }
 }
 

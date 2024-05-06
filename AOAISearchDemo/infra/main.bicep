@@ -439,6 +439,8 @@ module sql 'core/database/sql-database.bicep' = {
     location: location
     keyVaultName: keyVault.outputs.name
     addKeysToVault: true
+    principal_id: principalId
+    tenant_id: subscription().tenantId
   }
   dependsOn: [
     keyVault
