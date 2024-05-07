@@ -55,7 +55,7 @@ module sqlConnectionStringSecret '../keyvault/keyvault-secret.bicep' = if(addKey
      sqlServer.properties.fullyQualifiedDomainName, 
      ',1433;Database=', sqlDatabaseName, 
      ';UiD=', principal_id, 
-     ';Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;Authentication=ActiveDirectoryIntegrated')
+     ';Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;Authentication=ActiveDirectoryMsi')
   }
 }
 
