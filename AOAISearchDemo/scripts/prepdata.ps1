@@ -93,24 +93,24 @@ if ($process.ExitCode -ne 0) {
 #   Write-Host ""
 # }
 
-Write-Host ""
-Write-Host 'Running "prepopulate.py"...'
-Write-Host ""
-$prepoulateArguments = "./scripts/prepopulate/prepopulate.py",
-  "--entitiespath", "./scripts/prepopulate/entries/entities.yaml",
-  "--permissionspath", "./scripts/prepopulate/entries/permissions.yaml",
-  "--cosmosdbendpoint", $env:AZURE_COSMOS_ENDPOINT,
-  "--cosmosdbname", $env:AZURE_COSMOS_DB_NAME,
-  "--cosmosdbentitiescontainername", $env:AZURE_COSMOS_DB_ENTITIES_CONTAINER_NAME,
-  "--cosmosdbpermissionscontainername", $env:AZURE_COSMOS_DB_PERMISSIONS_CONTAINER_NAME,
-  "-v"
-$process = Start-Process -FilePath $venvPythonPath -ArgumentList $prepoulateArguments -Wait -NoNewWindow -PassThru
+# Write-Host ""
+# Write-Host 'Running "prepopulate.py"...'
+# Write-Host ""
+# $prepoulateArguments = "./scripts/prepopulate/prepopulate.py",
+#   "--entitiespath", "./scripts/prepopulate/entries/entities.yaml",
+#   "--permissionspath", "./scripts/prepopulate/entries/permissions.yaml",
+#   "--cosmosdbendpoint", $env:AZURE_COSMOS_ENDPOINT,
+#   "--cosmosdbname", $env:AZURE_COSMOS_DB_NAME,
+#   "--cosmosdbentitiescontainername", $env:AZURE_COSMOS_DB_ENTITIES_CONTAINER_NAME,
+#   "--cosmosdbpermissionscontainername", $env:AZURE_COSMOS_DB_PERMISSIONS_CONTAINER_NAME,
+#   "-v"
+# $process = Start-Process -FilePath $venvPythonPath -ArgumentList $prepoulateArguments -Wait -NoNewWindow -PassThru
 
-if ($process.ExitCode -ne 0) {
-  Write-Host ""
-  Write-Warning "Prepopulation of necessary Cosmos DB tables failed with non-zero exit code $LastExitCode. This process must run successfully at least once for the sample to run properly."
-  Write-Host ""
-}
+# if ($process.ExitCode -ne 0) {
+#   Write-Host ""
+#   Write-Warning "Prepopulation of necessary Cosmos DB tables failed with non-zero exit code $LastExitCode. This process must run successfully at least once for the sample to run properly."
+#   Write-Host ""
+# }
 
 Write-Host ""
 Write-Host 'Running "populate_sql.py"...'
