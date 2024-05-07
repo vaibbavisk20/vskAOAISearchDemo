@@ -14,6 +14,7 @@ param addKeysToVault bool = false
 
 param principal_id string
 param tenant_id string
+param principal_name string
 
 resource sqlServer 'Microsoft.Sql/servers@2022-08-01-preview' = {
   name: sqlServerName
@@ -25,7 +26,7 @@ resource sqlServer 'Microsoft.Sql/servers@2022-08-01-preview' = {
     publicNetworkAccess: 'Enabled'
     administrators: {
       administratorType: 'ActiveDirectory'
-      login: 'vsk-newapp-56'
+      login: principal_name
       sid: principal_id
       tenantId: tenant_id
       principalType: 'Application'

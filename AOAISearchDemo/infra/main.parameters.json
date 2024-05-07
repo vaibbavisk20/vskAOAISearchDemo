@@ -11,6 +11,9 @@
         "principalId": {
             "value": "${AZURE_PRINCIPAL_ID}"
         },
+        "principalName": {
+            "value": "${AZURE_PRINCIPAL_NAME}"
+        },
         "openAiServiceName": {
             "value": "${AZURE_OPENAI_SERVICE}"
         },
