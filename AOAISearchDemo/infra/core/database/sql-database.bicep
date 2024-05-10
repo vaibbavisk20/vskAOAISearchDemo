@@ -1,4 +1,8 @@
+param sqlAdminLogin string = 'azureuser'
 param sqlServerName string
+
+@secure()
+param sqlAdminPassword string = newGuid()
 
 param sqlDatabaseName string
 param databaseCollation string = 'SQL_Latin1_General_CP1_CI_AS'
@@ -21,17 +25,22 @@ resource sqlServer 'Microsoft.Sql/servers@2022-08-01-preview' = {
   location: location
   tags: tags
   properties: {
+    administratorLogin: sqlAdminLogin
+    administratorLoginPassword: sqlAdminPassword
     version: '12.0'
     minimalTlsVersion: '1.2'
     publicNetworkAccess: 'Enabled'
-    administrators: {
-      administratorType: 'ActiveDirectory'
-      login: principal_name
-      sid: principal_id
-      tenantId: tenant_id
-      principalType: 'Application'
-      azureADOnlyAuthentication: true
-    }
+  }
+}
+
+resource sqlAADLogin 'Microsoft.Sql/servers/administrators@2022-08-01-preview' = {
+  name: 'ActiveDirectory'
+  parent: sqlServer
+  properties: {
+    administratorType: 'ActiveDirectory'
+    login: principal_name
+    sid: principal_id
+    tenantId: tenant_id
   }
 }
 
